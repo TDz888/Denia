@@ -1,22 +1,38 @@
-/* Profile Rebuild Script - smooth and lightweight */
+/* Profile Script - Android Server Mini Design v2 */
 
-const T_DEFAULT = '🐱 Trần Thiên Ân | Profile';
-const T_AWAY = '👋 Quay lại đây, SuperDzAn!';
+const T_DEFAULT = 'Trần Thiên Ân | Profile';
+const T_AWAY = 'Back soon, SuperDzAn!';
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 document.addEventListener('visibilitychange', () => {
   document.title = document.hidden ? T_AWAY : T_DEFAULT;
 });
 
-// Activity status by schedule (Asia/Ho_Chi_Minh):
-// Online: 21:00 -> 05:00, Offline: 05:01 -> 20:59
-(function activityStatusByTime() {
+// ── SKELETON LOADER ──
+(function skeletonLoader() {
+  const sk = document.getElementById('skeleton');
+  if (!sk || prefersReducedMotion) {
+    if (sk) sk.remove();
+    return;
+  }
+  const hideTimeout = setTimeout(() => {
+    sk.classList.add('hidden');
+    setTimeout(() => sk.remove(), 500);
+  }, 800);
+  window.addEventListener('load', () => {
+    clearTimeout(hideTimeout);
+    sk.classList.add('hidden');
+    setTimeout(() => sk.remove(), 500);
+  });
+})();
+
+// ── ACTIVITY STATUS ──
+(function activityStatus() {
   const navText = document.getElementById('nav-status-text');
   const navDot = document.getElementById('nav-status-dot');
-  const avatarText = document.getElementById('avatar-status-text');
-  const avatarDot = document.getElementById('avatar-status-dot');
+  if (!navText || !navDot) return;
 
-  function nowInHCM() {
+  function update() {
     const parts = new Intl.DateTimeFormat('en-GB', {
       timeZone: 'Asia/Ho_Chi_Minh',
       hour: '2-digit',
@@ -24,68 +40,47 @@ document.addEventListener('visibilitychange', () => {
       hour12: false
     }).formatToParts(new Date());
     const hour = Number(parts.find(p => p.type === 'hour')?.value ?? 0);
-    const minute = Number(parts.find(p => p.type === 'minute')?.value ?? 0);
-    return { hour, minute, totalMin: hour * 60 + minute };
+    const totalMin = hour * 60 + Number(parts.find(p => p.type === 'minute')?.value ?? 0);
+    const isOnline = totalMin >= 21 * 60 || totalMin <= 5 * 60;
+    navText.textContent = isOnline ? 'Online' : 'Offline';
+    navDot.classList.toggle('offline', !isOnline);
   }
 
-  function applyStatus() {
-    const { totalMin } = nowInHCM();
-    const startOnline = 21 * 60; // 21:00
-    const endOnline = 5 * 60; // 05:00
-    const isOnline = totalMin >= startOnline || totalMin <= endOnline;
-
-    if (navText) navText.textContent = isOnline ? 'Online' : 'Offline';
-    if (avatarText) avatarText.textContent = isOnline ? 'Đang online' : 'Đang offline';
-    if (navDot) navDot.classList.toggle('is-offline', !isOnline);
-    if (avatarDot) avatarDot.classList.toggle('is-offline', !isOnline);
-  }
-
-  applyStatus();
-  setInterval(applyStatus, 30 * 1000);
+  update();
+  setInterval(update, 30000);
 })();
 
-// Remove legacy music module from DOM
-const legacyPlayer = document.getElementById('tia-player');
-if (legacyPlayer) legacyPlayer.remove();
+// ── HAMBURGER MENU ──
+(function hamburgerMenu() {
+  const btn = document.getElementById('nav-hamburger');
+  const links = document.getElementById('nav-links');
+  if (!btn || !links) return;
 
-// Cursor glow
-(function cursorFX() {
-  const cursorGlow = document.getElementById('cursor-glow');
-  const cursorDot = document.getElementById('cursor-dot');
-  const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
-  if (!cursorGlow || !cursorDot || prefersReducedMotion || coarsePointer) return;
-
-  let mx = -999;
-  let my = -999;
-  let gx = -999;
-  let gy = -999;
-
-  window.addEventListener('mousemove', e => {
-    mx = e.clientX;
-    my = e.clientY;
-  }, { passive: true });
-
-  document.addEventListener('mousedown', () => {
-    cursorDot.style.transform = `translate(${mx}px,${my}px) translate(-50%,-50%) scale(0.62)`;
-  });
-  document.addEventListener('mouseup', () => {
-    cursorDot.style.transform = `translate(${mx}px,${my}px) translate(-50%,-50%)`;
+  btn.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', String(open));
   });
 
-  function loop() {
-    if (!document.hidden) {
-      gx += (mx - gx) * 0.1;
-      gy += (my - gy) * 0.1;
-      cursorGlow.style.transform = `translate(${gx}px,${gy}px) translate(-50%,-50%)`;
-      cursorDot.style.transform = `translate(${mx}px,${my}px) translate(-50%,-50%)`;
+  links.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      links.classList.remove('open');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.nav-inner') && links.classList.contains('open')) {
+      links.classList.remove('open');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
     }
-    requestAnimationFrame(loop);
-  }
-  loop();
+  });
 })();
 
-// Navigation state on scroll
-(function navScrollState() {
+// ── NAVIGATION SCROLL STATE ──
+(function navScroll() {
   const nav = document.getElementById('nav');
   if (!nav) return;
   window.addEventListener('scroll', () => {
@@ -93,188 +88,142 @@ if (legacyPlayer) legacyPlayer.remove();
   }, { passive: true });
 })();
 
-// Background video parallax (throttled)
-(function bgParallax() {
-  const bgVid = document.querySelector('.bg-video');
-  if (!bgVid || prefersReducedMotion) return;
-  let ticking = false;
+// ── ACTIVE NAV LINK ON SCROLL ──
+(function navActive() {
+  const links = document.querySelectorAll('.nav-link');
+  const sections = document.querySelectorAll('section[id]');
+  if (!links.length || !sections.length) return;
+
   window.addEventListener('scroll', () => {
-    if (document.hidden || ticking) return;
-    ticking = true;
-    requestAnimationFrame(() => {
-      bgVid.style.transform = `scale(1.08) translateY(${window.scrollY * 0.08}px)`;
-      ticking = false;
+    const scrollY = window.scrollY + 130;
+    let current = '';
+
+    sections.forEach(section => {
+      const top = section.offsetTop;
+      const height = section.offsetHeight;
+      if (scrollY >= top && scrollY < top + height) {
+        current = section.getAttribute('id');
+      }
+    });
+
+    links.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === '#' + current);
     });
   }, { passive: true });
 })();
 
-// Reveal on scroll
-(function revealOnScroll() {
-  const revEls = document.querySelectorAll('.reveal-up,.reveal-left');
-  if (!revEls.length) return;
+// ── REVEAL ON SCROLL (with stagger) ──
+(function revealScroll() {
+  const els = document.querySelectorAll('.reveal-up');
+  if (!els.length) return;
+
   const obs = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('vis');
-        obs.unobserve(entry.target);
-      }
+      if (!entry.isIntersecting) return;
+      const siblings = Array.from(entry.target.parentElement.querySelectorAll('.reveal-up'));
+      const idx = siblings.indexOf(entry.target);
+      entry.target.style.transitionDelay = `${idx * 0.08}s`;
+      entry.target.classList.add('visible');
+      obs.unobserve(entry.target);
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
-  revEls.forEach(el => obs.observe(el));
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+  els.forEach(el => obs.observe(el));
 })();
 
-// Skill bars
+// ── SKILL BARS + COUNTER ──
 (function skillBars() {
-  const fills = document.querySelectorAll('.sfill');
+  const fills = document.querySelectorAll('.skill-fill');
+  const pcts = document.querySelectorAll('.skill-pct');
   if (!fills.length) return;
+
   const obs = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
       const idx = Array.from(fills).indexOf(entry.target);
+
       setTimeout(() => {
-        entry.target.style.width = `${entry.target.dataset.w || 0}%`;
-      }, idx * 90);
+        const targetW = Number(entry.target.dataset.w || 0);
+        entry.target.style.width = `${targetW}%`;
+
+        if (pcts[idx]) {
+          const targetCount = Number(pcts[idx].dataset.count || targetW);
+          animateCounter(pcts[idx], targetCount);
+        }
+      }, idx * 120);
+
       obs.unobserve(entry.target);
     });
-  }, { threshold: 0.4 });
+  }, { threshold: 0.3 });
+
   fills.forEach(el => obs.observe(el));
+
+  function animateCounter(el, target) {
+    let current = 0;
+    const step = Math.ceil(target / 40);
+    const timer = setInterval(() => {
+      current += step;
+      if (current >= target) {
+        current = target;
+        clearInterval(timer);
+      }
+      el.textContent = `${current}%`;
+    }, 30);
+  }
 })();
 
-// Ripple buttons
-(function rippleButtons() {
+// ── RIPPLE BUTTONS ──
+(function rippleBtn() {
   document.querySelectorAll('.ripple').forEach(el => {
-    el.addEventListener('click', e => {
-      const rect = el.getBoundingClientRect();
+    el.addEventListener('click', function(e) {
+      const rect = this.getBoundingClientRect();
       const circle = document.createElement('span');
       circle.className = 'ripple-circle';
       const size = Math.max(rect.width, rect.height);
-      circle.style.width = `${size}px`;
-      circle.style.height = `${size}px`;
+      circle.style.width = circle.style.height = `${size}px`;
       circle.style.left = `${e.clientX - rect.left - size / 2}px`;
       circle.style.top = `${e.clientY - rect.top - size / 2}px`;
-      el.appendChild(circle);
+      this.appendChild(circle);
       circle.addEventListener('animationend', () => circle.remove());
     });
   });
 })();
 
-// Particle field (adaptive count)
-(function particles() {
-  const canvas = document.getElementById('particles-canvas');
-  if (!canvas || prefersReducedMotion) return;
-  const ctx = canvas.getContext('2d', { alpha: true });
-  if (!ctx) return;
-
-  let W = 0;
-  let H = 0;
-  let list = [];
-  const memory = navigator.deviceMemory || 8;
-  const isMobile = window.matchMedia('(max-width: 768px)').matches;
-  const total = isMobile ? 40 : (memory <= 4 ? 55 : 80);
-
-  function resize() {
-    W = canvas.width = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize, { passive: true });
-
-  class P {
-    constructor() { this.reset(); }
-    reset() {
-      this.x = Math.random() * W;
-      this.y = Math.random() * H;
-      this.vx = (Math.random() - 0.5) * 0.15;
-      this.vy = -0.04 - Math.random() * 0.06;
-      this.r = Math.random() * 1.6 + 0.3;
-      this.life = 120 + Math.random() * 220;
-      this.age = Math.random() * this.life;
-    }
-    update() {
-      this.x += this.vx;
-      this.y += this.vy;
-      this.age += 1;
-      if (this.age > this.life || this.y < -10 || this.x < -10 || this.x > W + 10) this.reset();
-    }
-    draw() {
-      const a = Math.sin((this.age / this.life) * Math.PI) * 0.5;
-      if (a <= 0.02) return;
-      ctx.fillStyle = `rgba(244,132,95,${a})`;
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-      ctx.fill();
-    }
-  }
-
-  for (let i = 0; i < total; i += 1) list.push(new P());
-
-  function loop() {
-    if (!document.hidden) {
-      ctx.clearRect(0, 0, W, H);
-      list.forEach(p => {
-        p.update();
-        p.draw();
-      });
-    }
-    requestAnimationFrame(loop);
-  }
-  loop();
-})();
-
-// Quick tools: clock + Gmail pop
-(function quickTools() {
-  const timeEl = document.getElementById('mini-clock-time');
-  const gmailBtn = document.getElementById('gmail-toggle');
-  const gmailPanel = document.getElementById('gmail-panel');
-  if (!timeEl || !gmailBtn || !gmailPanel) return;
-
-  function tick() {
-    const now = new Date();
-    timeEl.textContent = now.toLocaleTimeString('vi-VN', {
-      hour12: false,
-      timeZone: 'Asia/Ho_Chi_Minh'
-    });
-  }
-  tick();
-  setInterval(tick, 1000);
-
-  gmailBtn.addEventListener('click', () => {
-    const expanded = gmailBtn.getAttribute('aria-expanded') === 'true';
-    gmailBtn.setAttribute('aria-expanded', String(!expanded));
-    gmailPanel.hidden = expanded;
-  });
-
-  document.addEventListener('click', e => {
-    if (!gmailPanel.hidden && !e.target.closest('#quick-tools')) {
-      gmailBtn.setAttribute('aria-expanded', 'false');
-      gmailPanel.hidden = true;
-    }
-  });
-})();
-
-// Footer terminal typing
+// ── FOOTER TERMINAL TYPING ──
 (function terminalTyping() {
-  const terminalTextEl = document.getElementById('terminal-typing');
-  if (!terminalTextEl) return;
+  const el = document.getElementById('terminal-typing');
+  if (!el) return;
   const text = 'Are....you.....be.....my......night-friend?';
   let i = 0;
 
-  function typeStep() {
+  function type() {
     if (document.hidden) {
-      setTimeout(typeStep, 220);
+      setTimeout(type, 220);
       return;
     }
     if (i <= text.length) {
-      terminalTextEl.textContent = text.slice(0, i);
+      el.textContent = text.slice(0, i);
       i += 1;
-      setTimeout(typeStep, 110);
+      setTimeout(type, 100);
       return;
     }
     setTimeout(() => {
       i = 0;
-      terminalTextEl.textContent = '';
-      typeStep();
-    }, 2600);
+      el.textContent = '';
+      type();
+    }, 2500);
   }
-  typeStep();
+  type();
+})();
+
+// ── SMOOTH SCROLL FOR ANCHOR LINKS ──
+(function smoothScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', e => {
+      const target = document.querySelector(anchor.getAttribute('href'));
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
 })();
