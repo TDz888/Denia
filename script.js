@@ -84,11 +84,11 @@ const NO_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (!e.isIntersecting) return;
       const p = e.target.closest('.proj-grid') || e.target.closest('.about-grid') || e.target.closest('.skills-list') || e.target.closest('.contact-grid') || e.target.closest('.tag-group') || e.target.parentElement;
       const s = Array.from(p.querySelectorAll('.reveal'));
-      e.target.style.transitionDelay = `${s.indexOf(e.target) * 0.07}s`;
+      e.target.style.transitionDelay = `${s.indexOf(e.target) * 0.05}s`;
       e.target.classList.add('show');
       obs.unobserve(e.target);
     });
-  }, { threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
   els.forEach(el => obs.observe(el));
 })();
 
@@ -136,6 +136,27 @@ const NO_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     a.addEventListener('click', e => {
       const t = document.querySelector(a.getAttribute('href'));
       if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
+})();
+
+// ── RIPPLE EFFECT ──
+(function ripple() {
+  const els = document.querySelectorAll('.card, .c-card, .skill, .info-card, .btn-p');
+  if (NO_MOTION) return;
+  els.forEach(el => {
+    el.style.position = 'relative';
+    el.style.overflow = 'hidden';
+    el.addEventListener('click', function(e) {
+      const r = document.createElement('span');
+      const rect = this.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      const x = e.clientX - rect.left - size / 2;
+      const y = e.clientY - rect.top - size / 2;
+      r.style.cssText = `position:absolute;pointer-events:none;width:${size}px;height:${size}px;left:${x}px;top:${y}px;border-radius:50%;background:currentColor;opacity:0.12;transform:scale(0);transition:transform 0.5s cubic-bezier(0.16,1,0.3,1),opacity 0.5s ease;`;
+      this.appendChild(r);
+      requestAnimationFrame(() => { r.style.transform = 'scale(1)'; r.style.opacity = '0'; });
+      setTimeout(() => r.remove(), 600);
     });
   });
 })();
