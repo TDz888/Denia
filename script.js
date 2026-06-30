@@ -21,6 +21,9 @@ const NO_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const saved = localStorage.getItem('theme');
   if (saved) html.setAttribute('data-theme', saved);
 
+  // Enable smooth theme transitions after initial paint
+  requestAnimationFrame(() => html.classList.add('theme-ready'));
+
   btn.addEventListener('click', () => {
     const cur = html.getAttribute('data-theme') || 'light';
     const next = cur === 'dark' ? 'light' : 'dark';
