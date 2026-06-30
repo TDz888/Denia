@@ -140,6 +140,42 @@ const NO_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   });
 })();
 
+// ── BACK TO TOP ──
+(function backTop() {
+  const btn = document.getElementById('back-top');
+  if (!btn) return;
+  window.addEventListener('scroll', () => {
+    btn.classList.toggle('visible', window.scrollY > 400);
+  }, { passive: true });
+  btn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
+
+// ── STATS COUNTER ──
+(function statCount() {
+  const nums = document.querySelectorAll('.stat-num');
+  if (!nums.length || NO_MOTION) {
+    nums.forEach(el => { el.textContent = el.dataset.target; });
+    return;
+  }
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const target = Number(e.target.dataset.target || 0);
+      let cur = 0;
+      const step = Math.max(1, Math.ceil(target / 25));
+      const t = setInterval(() => {
+        cur += step;
+        if (cur >= target) { cur = target; clearInterval(t); }
+        e.target.textContent = cur;
+      }, 40);
+      obs.unobserve(e.target);
+    });
+  }, { threshold: 0.5 });
+  nums.forEach(el => obs.observe(el));
+})();
+
 // ── RIPPLE EFFECT ──
 (function ripple() {
   const els = document.querySelectorAll('.card, .c-card, .skill, .info-card, .btn-p');
