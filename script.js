@@ -1,7 +1,8 @@
-/* Profile Script — v6 Premium Visual Redesign */
+/* Profile Script — v6.1 Premium Visual Refinements */
 
 const NO_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const isMobile = window.innerWidth < 640;
+let isMobile = window.innerWidth < 640;
+window.addEventListener('resize', () => { isMobile = window.innerWidth < 640; });
 
 // ── SKELETON ──
 (function skel() {
@@ -20,12 +21,38 @@ const isMobile = window.innerWidth < 640;
   if (!btn) return;
   const saved = localStorage.getItem('theme');
   if (saved) html.setAttribute('data-theme', saved);
-  requestAnimationFrame(() => html.classList.add('theme-ready'));
+
+  // Use existing theme overlay from HTML
+  const overlay = document.getElementById('theme-overlay');
+  if (!overlay) return;
+
+  let transitioning = false;
   btn.addEventListener('click', () => {
+    if (transitioning) return;
+    transitioning = true;
     const cur = html.getAttribute('data-theme') || 'light';
     const next = cur === 'dark' ? 'light' : 'dark';
-    html.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
+
+    // Add transition class
+    html.classList.add('theme-transitioning');
+
+    // Show overlay
+    overlay.className = 'theme-overlay ' + next + ' active';
+
+    // After overlay covers screen, switch theme
+    setTimeout(() => {
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+
+      // Fade out overlay
+      setTimeout(() => {
+        overlay.classList.remove('active');
+        setTimeout(() => {
+          html.classList.remove('theme-transitioning');
+          transitioning = false;
+        }, 400);
+      }, 50);
+    }, 200);
   });
 })();
 
@@ -236,7 +263,9 @@ const isMobile = window.innerWidth < 640;
       const size = Math.max(rect.width, rect.height) * 2;
       const x = e.clientX - rect.left - size / 2;
       const y = e.clientY - rect.top - size / 2;
-      r.style.cssText = `position:absolute;pointer-events:none;width:${size}px;height:${size}px;left:${x}px;top:${y}px;border-radius:50%;background:currentColor;opacity:.08;transform:scale(0);transition:transform .6s cubic-bezier(.4,0,.2,1),opacity .6s ease;`;
+      const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+      const color = dark ? '129,140,248' : '99,102,241';
+      r.style.cssText = `position:absolute;pointer-events:none;width:${size}px;height:${size}px;left:${x}px;top:${y}px;border-radius:50%;background:rgba(${color},0.12);transform:scale(0);transition:transform .6s cubic-bezier(.4,0,.2,1),opacity .6s ease;`;
       this.appendChild(r);
       requestAnimationFrame(() => { r.style.transform = 'scale(1)'; r.style.opacity = '0'; });
       setTimeout(() => r.remove(), 700);
@@ -335,7 +364,7 @@ const isMobile = window.innerWidth < 640;
       const rect = this.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width - 0.5;
       const y = (e.clientY - rect.top) / rect.height - 0.5;
-      this.style.transform = `translateY(-6px) perspective(600px) rotateX(${-y * 6}deg) rotateY(${x * 6}deg)`;
+      this.style.transform = `translateY(-4px) perspective(800px) rotateX(${-y * 3.5}deg) rotateY(${x * 3.5}deg)`;
     });
     card.addEventListener('mouseleave', function() { this.style.transform = ''; });
   });
