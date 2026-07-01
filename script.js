@@ -1,4 +1,4 @@
-/* Profile Script — v4 Premium */
+/* Profile Script — v5 Premium Redesign */
 
 const NO_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -21,7 +21,6 @@ const NO_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const saved = localStorage.getItem('theme');
   if (saved) html.setAttribute('data-theme', saved);
 
-  // Enable smooth theme transitions after initial paint
   requestAnimationFrame(() => html.classList.add('theme-ready'));
 
   btn.addEventListener('click', () => {
@@ -46,6 +45,20 @@ const NO_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     d.classList.toggle('off', !on);
   };
   fn(); setInterval(fn, 30000);
+})();
+
+// ── SCROLL PROGRESS ──
+(function scrollProgress() {
+  const bar = document.getElementById('scroll-progress');
+  if (!bar) return;
+  const update = () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    bar.style.width = progress + '%';
+  };
+  window.addEventListener('scroll', update, { passive: true });
+  update();
 })();
 
 // ── HAMBURGER ──
@@ -85,9 +98,9 @@ const NO_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (!e.isIntersecting) return;
-      const p = e.target.closest('.proj-grid') || e.target.closest('.about-grid') || e.target.closest('.skills-list') || e.target.closest('.contact-grid') || e.target.closest('.tag-group') || e.target.parentElement;
+      const p = e.target.closest('.proj-grid') || e.target.closest('.about-grid') || e.target.closest('.skills-layout') || e.target.closest('.why-grid') || e.target.closest('.contact-grid') || e.target.closest('.timeline') || e.target.closest('.tag-group') || e.target.parentElement;
       const s = Array.from(p.querySelectorAll('.reveal'));
-      e.target.style.transitionDelay = `${s.indexOf(e.target) * 0.05}s`;
+      e.target.style.transitionDelay = `${s.indexOf(e.target) * 0.06}s`;
       e.target.classList.add('show');
       obs.unobserve(e.target);
     });
@@ -181,7 +194,7 @@ const NO_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // ── RIPPLE EFFECT ──
 (function ripple() {
-  const els = document.querySelectorAll('.card, .c-card, .skill, .info-card, .btn-p');
+  const els = document.querySelectorAll('.card, .c-card, .skill, .info-card, .btn, .why-card, .ts-item, .tl-card');
   if (NO_MOTION) return;
   els.forEach(el => {
     el.style.position = 'relative';
@@ -196,6 +209,104 @@ const NO_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       this.appendChild(r);
       requestAnimationFrame(() => { r.style.transform = 'scale(1)'; r.style.opacity = '0'; });
       setTimeout(() => r.remove(), 600);
+    });
+  });
+})();
+
+// ── PARTICLES ──
+(function particles() {
+  if (NO_MOTION) return;
+  const canvas = document.getElementById('particles-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let w, h, particles = [];
+  const PARTICLE_COUNT = 40;
+
+  function resize() {
+    w = canvas.width = canvas.offsetWidth;
+    h = canvas.height = canvas.offsetHeight;
+  }
+
+  function createParticle() {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    return {
+      x: Math.random() * w,
+      y: Math.random() * h,
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: (Math.random() - 0.5) * 0.4,
+      size: Math.random() * 2 + 1,
+      opacity: Math.random() * 0.3 + 0.1,
+      color: isDark ? '0,176,155' : '0,110,94',
+    };
+  }
+
+  function init() {
+    resize();
+    particles = [];
+    for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(createParticle());
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    particles.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < 0) p.x = w;
+      if (p.x > w) p.x = 0;
+      if (p.y < 0) p.y = h;
+      if (p.y > h) p.y = 0;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${p.color},${p.opacity})`;
+      ctx.fill();
+    });
+
+    // Draw connections
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 120) {
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(${particles[i].color},${0.08 * (1 - dist / 120)})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', resize);
+  init();
+  draw();
+
+  // Update colors on theme change
+  const observer = new MutationObserver(() => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const color = isDark ? '0,176,155' : '0,110,94';
+    particles.forEach(p => p.color = color);
+  });
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+})();
+
+// ── MAGNETIC HOVER FOR BUTTONS ──
+(function magnetic() {
+  if (NO_MOTION) return;
+  const btns = document.querySelectorAll('.btn');
+  btns.forEach(btn => {
+    btn.addEventListener('mousemove', function(e) {
+      const rect = this.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      this.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+    });
+    btn.addEventListener('mouseleave', function() {
+      this.style.transform = '';
     });
   });
 })();
