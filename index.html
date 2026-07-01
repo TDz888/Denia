@@ -3,14 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trần Thiên Ân | Profile</title>
-<meta name="description" content="Portfolio của Trần Thiên Ân - Frontend & Backend Developer, Cybersecurity Enthusiast">
+<title>Trần Thiên Ân | Portfolio</title>
+<meta name="description" content="Portfolio của Trần Thiên Ân - Developer & Cybersecurity">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<!-- CURSOR GLOW -->
+<div class="cursor-glow" id="cursor-glow"></div>
 
 <!-- SCROLL PROGRESS -->
 <div class="scroll-progress" id="scroll-progress"></div>
@@ -24,344 +27,475 @@
 </div>
 
 <!-- NAV -->
-<nav class="nav" id="nav" role="navigation" aria-label="Main">
+<nav class="nav" id="nav">
   <div class="nav-inner">
-    <a href="#hero" class="nav-logo" aria-label="Home">
-      <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true"><path d="M5 6L20 13L5 20" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 13H20" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+    <a href="#hero" class="nav-logo">
+      <div class="logo-icon">
+        <svg width="20" height="20" viewBox="0 0 26 26" fill="none"><path d="M5 6L20 13L5 20" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 13H20" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+      </div>
       <span>TA</span>
     </a>
     <button class="nav-ham" id="nav-ham" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
-    <ul class="nav-links" id="nav-links" role="menubar">
-      <li role="none"><a href="#hero" class="nav-link active" role="menuitem">Home</a></li>
-      <li role="none"><a href="#about" class="nav-link" role="menuitem">About</a></li>
-      <li role="none"><a href="#skills" class="nav-link" role="menuitem">Skills</a></li>
-      <li role="none"><a href="#projects" class="nav-link" role="menuitem">Projects</a></li>
-      <li role="none"><a href="#contact" class="nav-link" role="menuitem">Contact</a></li>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#hero" class="nav-link active">Home</a></li>
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#skills" class="nav-link">Skills</a></li>
+      <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
     </ul>
     <div class="nav-right">
-      <button class="theme-btn" id="theme-btn" aria-label="Toggle theme">
-        <svg class="sun" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="3.5" stroke="currentColor" stroke-width="1.5"/><line x1="10" y1="1" x2="10" y2="3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="10" y1="17" x2="10" y2="19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="3.44" y1="3.44" x2="4.88" y2="4.88" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="15.12" y1="15.12" x2="16.56" y2="16.56" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="10" x2="3" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="17" y1="10" x2="19" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="3.44" y1="16.56" x2="4.88" y2="15.12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="15.12" y1="4.88" x2="16.56" y2="3.44" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        <svg class="moon" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M15 11.5C12.5 11.5 9.5 8.5 9.5 5C9.5 3.5 10 2 11 1C6.5 1.5 3 5.5 3 10C3 14.5 6.5 18 11 18C15.5 18 19.5 14.5 20 10C19 11 17.5 11.5 15 11.5Z" fill="currentColor"/></svg>
-      </button>
-      <div class="nav-status" aria-live="polite">
+      <div class="nav-status">
         <span class="status-dot" id="status-dot"></span>
         <span id="status-text">Online</span>
       </div>
+      <button class="theme-btn" id="theme-btn" aria-label="Toggle theme">
+        <svg class="sun" width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3.5" stroke="currentColor" stroke-width="1.5"/><line x1="10" y1="1" x2="10" y2="3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="10" y1="17" x2="10" y2="19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="3.44" y1="3.44" x2="4.88" y2="4.88" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="15.12" y1="15.12" x2="16.56" y2="16.56" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="10" x2="3" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="17" y1="10" x2="19" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="3.44" y1="16.56" x2="4.88" y2="15.12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="15.12" y1="4.88" x2="16.56" y2="3.44" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <svg class="moon" width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M15 11.5C12.5 11.5 9.5 8.5 9.5 5C9.5 3.5 10 2 11 1C6.5 1.5 3 5.5 3 10C3 14.5 6.5 18 11 18C15.5 18 19.5 14.5 20 10C19 11 17.5 11.5 15 11.5Z" fill="currentColor"/></svg>
+      </button>
     </div>
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- ═══════════ HERO ═══════════ -->
 <section id="hero" class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-glow"></div>
-  <canvas id="particles-canvas" class="hero-particles"></canvas>
+  <div class="hero-mesh"></div>
+  <div class="hero-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+  <canvas id="hero-canvas" class="hero-canvas"></canvas>
   <div class="container hero-inner">
-    <div class="hero-avatar-wrap fade-in">
-      <div class="hero-avatar-ring"></div>
-      <div class="hero-avatar-ring hero-avatar-ring--2"></div>
+    <div class="hero-avatar-wrap fade-up">
+      <div class="avatar-glow"></div>
+      <div class="avatar-ring r1"></div>
+      <div class="avatar-ring r2"></div>
+      <div class="avatar-ring r3"></div>
       <img src="https://i.ibb.co/cKdTGcWr/89a5-Nz84nf.png" alt="Trần Thiên Ân" class="hero-avatar" width="160" height="160" loading="eager">
     </div>
-    <div class="hero-badge fade-in">
-      <span class="badge-pulse"></span>Lux Cipher
+    <div class="hero-chip fade-up" style="--d:.1s">
+      <span class="chip-dot"></span>
+      <span>Lux Cipher</span>
     </div>
-    <h1 class="hero-title fade-in" style="--i:1">Xin chào, tôi là<br><span class="hero-name">Trần Thiên Ân</span></h1>
-    <p class="hero-sub fade-in" style="--i:2">Frontend &amp; Backend Developer · Cybersecurity</p>
-    <div class="hero-status-row fade-in" style="--i:2">
-      <span class="hero-status-chip"><span class="hsc-dot green"></span>Available for work</span>
-      <span class="hero-status-chip"><span class="hsc-dot blue"></span>Open source</span>
-      <span class="hero-status-chip"><span class="hsc-dot orange"></span>CTF Player</span>
+    <h1 class="hero-title fade-up" style="--d:.2s">
+      Xin chào, tôi là<br>
+      <span class="hero-name">Trần Thiên Ân</span>
+    </h1>
+    <p class="hero-sub fade-up" style="--d:.3s">Frontend &amp; Backend Developer · Cybersecurity</p>
+    <div class="hero-tags fade-up" style="--d:.35s">
+      <span class="htag htag--green">Available</span>
+      <span class="htag htag--purple">Open Source</span>
+      <span class="htag htag--amber">CTF Player</span>
     </div>
-    <div class="hero-cta fade-in" style="--i:3">
-      <a href="#about" class="btn btn-primary">Khám phá</a>
-      <a href="#projects" class="btn btn-ghost">Dự án</a>
+    <div class="hero-cta fade-up" style="--d:.4s">
+      <a href="#about" class="btn btn-glow">
+        <span>Khám phá</span>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M9 4L13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#projects" class="btn btn-glass">Dự án</a>
     </div>
   </div>
-  <div class="scroll-ind"><div class="sc-track"><div class="sc-thumb"></div></div><span>Cuộn</span></div>
+  <div class="scroll-hint">
+    <div class="scroll-mouse"><div class="scroll-dot"></div></div>
+  </div>
 </section>
 
-<!-- ABOUT -->
-<section id="about" class="sec alt" aria-label="About">
+<!-- ═══════════ ABOUT ═══════════ -->
+<section id="about" class="section" aria-label="About">
+  <div class="section-bg sb-about"></div>
   <div class="container">
-    <div class="sec-head">
-      <span class="sec-tag reveal">About</span>
-      <h2 class="sec-title reveal">Hành trình của tôi</h2>
-      <p class="sec-desc reveal">Từ một cậu học sinh THPT đến Developer &amp; Cybersecurity Enthusiast</p>
+    <div class="sec-header">
+      <span class="sec-tag">About</span>
+      <h2 class="sec-title">Hành trình của tôi</h2>
+      <p class="sec-desc">Từ một cậu học sinh THPT đến Developer &amp; Cybersecurity Enthusiast</p>
     </div>
-    <div class="about-grid">
-      <div class="about-left">
-        <div class="about-info">
-          <div class="info-card reveal">
-            <div class="info-icon"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M2 20V6L11 2L20 6V20H14V14H8V20H2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
-            <div><span class="info-label">Trường</span><span class="info-val">THPT Võ Văn Kiệt</span></div>
+
+    <div class="about-layout">
+      <!-- Left: Info Cards -->
+      <div class="about-col">
+        <div class="info-stack">
+          <div class="info-pill reveal">
+            <div class="ip-icon ip-school"><svg width="20" height="20" viewBox="0 0 22 22" fill="none"><path d="M2 20V6L11 2L20 6V20H14V14H8V20H2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+            <div class="ip-text"><span class="ip-label">Trường</span><span class="ip-val">THPT Võ Văn Kiệt</span></div>
           </div>
-          <div class="info-card reveal">
-            <div class="info-icon"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><rect x="2" y="4" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M2 8L11 14L20 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <div><span class="info-label">Làm việc tại</span><span class="info-val">CoderHouse</span></div>
+          <div class="info-pill reveal">
+            <div class="ip-icon ip-work"><svg width="20" height="20" viewBox="0 0 22 22" fill="none"><rect x="2" y="4" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M2 8L11 14L20 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="ip-text"><span class="ip-label">Làm việc tại</span><span class="ip-val">CoderHouse</span></div>
           </div>
-          <div class="info-card reveal">
-            <div class="info-icon"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><circle cx="11" cy="7" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M3 20C3 15.5 6.5 13 11 13C15.5 13 19 15.5 19 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-            <div><span class="info-label">Nhân vật yêu thích</span><span class="info-val">Denia</span></div>
+          <div class="info-pill reveal">
+            <div class="ip-icon ip-fav"><svg width="20" height="20" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="7" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M3 20C3 15.5 6.5 13 11 13C15.5 13 19 15.5 19 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+            <div class="ip-text"><span class="ip-label">Nhân vật yêu thích</span><span class="ip-val">Denia</span></div>
           </div>
-          <div class="info-card reveal">
-            <div class="info-icon"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M11 2C6 2 2 6 2 11C2 16 6 20 11 20C16 20 20 16 20 11C20 6 16 2 11 2Z" stroke="currentColor" stroke-width="1.5"/><path d="M8 11H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M11 8V14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-            <div><span class="info-label">Sinh nhật</span><span class="info-val">8 tháng 8, 2011</span></div>
+          <div class="info-pill reveal">
+            <div class="ip-icon ip-bday"><svg width="20" height="20" viewBox="0 0 22 22" fill="none"><path d="M11 2C6 2 2 6 2 11C2 16 6 20 11 20C16 20 20 16 20 11C20 6 16 2 11 2Z" stroke="currentColor" stroke-width="1.5"/><path d="M8 11H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M11 8V14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+            <div class="ip-text"><span class="ip-label">Sinh nhật</span><span class="ip-val">8 tháng 8, 2011</span></div>
           </div>
         </div>
-        <div class="tag-group reveal">
-          <span class="t t-w">Baller</span>
-          <span class="t t-w">Night Owl</span>
-          <span class="t t-p">Cyber</span>
-          <span class="t t-s">Cat Lover</span>
-          <span class="t t-w">Developer</span>
-          <span class="t t-w">Denia</span>
+        <div class="about-tags reveal">
+          <span class="atag atag--amber">Baller</span>
+          <span class="atag atag--teal">Night Owl</span>
+          <span class="atag atag--blue">Cyber</span>
+          <span class="atag atag--rose">Cat Lover</span>
+          <span class="atag atag--teal">Developer</span>
+          <span class="atag atag--amber">Denia</span>
         </div>
       </div>
-      <div class="about-right">
-        <div class="stats-grid reveal">
-          <div class="stat-item"><span class="stat-num" data-target="6">0</span><span class="stat-label">Dự án</span></div>
-          <div class="stat-item"><span class="stat-num" data-target="5">0</span><span class="stat-label">Công cụ</span></div>
-          <div class="stat-item"><span class="stat-num" data-target="3">0</span><span class="stat-label">Ngôn ngữ</span></div>
-          <div class="stat-item"><span class="stat-num" data-target="2">0</span><span class="stat-label">Năm code</span></div>
+
+      <!-- Right: Stats + Cards -->
+      <div class="about-col">
+        <div class="stats-row reveal">
+          <div class="stat-card">
+            <span class="stat-num" data-target="6">0</span>
+            <span class="stat-label">Dự án</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num" data-target="5">0</span>
+            <span class="stat-label">Công cụ</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num" data-target="3">0</span>
+            <span class="stat-label">Ngôn ngữ</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num" data-target="2">0</span>
+            <span class="stat-label">Năm code</span>
+          </div>
         </div>
         <div class="about-cards">
-          <article class="card reveal">
-            <div class="card-bar"></div>
-            <span class="card-tag">Identity</span>
+          <div class="ab-card reveal">
+            <div class="ab-card-accent"></div>
+            <span class="ab-card-tag">Identity</span>
             <h3>Luxury Cipher Mindset</h3>
-            <p>Giữ phong cách tối giản, tập trung, hiệu quả và an toàn trong từng dòng code. Luôn đặt chất lượng lên hàng đầu.</p>
-          </article>
-          <article class="card reveal">
-            <div class="card-bar"></div>
-            <span class="card-tag">Daily Mode</span>
+            <p>Giữ phong cách tối giản, tập trung, hiệu quả và an toàn trong từng dòng code.</p>
+          </div>
+          <div class="ab-card reveal">
+            <div class="ab-card-accent"></div>
+            <span class="ab-card-tag">Daily Mode</span>
             <h3>Night Coder</h3>
-            <p>Làm việc sâu vào ban đêm (9PM – 5AM), ưu tiên flow state và consistency. Coders đam mê, cyber guardian &amp; cú đêm.</p>
-          </article>
-          <article class="card reveal">
-            <div class="card-bar"></div>
-            <span class="card-tag">Vibe</span>
+            <p>Làm việc sâu vào ban đêm (9PM – 5AM), ưu tiên flow state và consistency.</p>
+          </div>
+          <div class="ab-card reveal">
+            <div class="ab-card-accent"></div>
+            <span class="ab-card-tag">Vibe</span>
             <h3>Baller · Cat Lover · Anime</h3>
-            <p>Yêu sự cô độc, bóng rổ, edit anime, và nghe <strong>Ai Đưa Em Về</strong> của TIA — nghe mãi không chán.</p>
-          </article>
+            <p>Yêu sự cô độc, bóng rổ, edit anime, và nghe <strong>Ai Đưa Em Về</strong> của TIA.</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- JOURNEY TIMELINE -->
-<section id="journey" class="sec" aria-label="Journey">
+<!-- ═══════════ JOURNEY ═══════════ -->
+<section id="journey" class="section section--alt" aria-label="Journey">
   <div class="container">
-    <div class="sec-head centered">
-      <span class="sec-tag reveal">Timeline</span>
-      <h2 class="sec-title reveal">Lộ trình phát triển</h2>
-      <p class="sec-desc reveal">Những cột mốc quan trọng trên hành trình của tôi</p>
+    <div class="sec-header sec-header--center">
+      <span class="sec-tag">Timeline</span>
+      <h2 class="sec-title">Lộ trình phát triển</h2>
+      <p class="sec-desc">Những cột mốc quan trọng trên hành trình của tôi</p>
     </div>
-    <div class="timeline">
-      <div class="timeline-item reveal" data-side="left">
-        <div class="tl-dot"></div>
-        <div class="tl-card">
-          <span class="tl-date">2023</span>
+    <div class="tl">
+      <div class="tl-line"></div>
+      <div class="tl-item reveal" data-side="left">
+        <div class="tl-dot"><span></span></div>
+        <div class="tl-content">
+          <span class="tl-year">2023</span>
           <h3>Bắt đầu học lập trình</h3>
           <p>Khám phá niềm đam mê với code, bắt đầu học Python và HTML/CSS từ con số không.</p>
         </div>
       </div>
-      <div class="timeline-item reveal" data-side="right">
-        <div class="tl-dot"></div>
-        <div class="tl-card">
-          <span class="tl-date">2024</span>
+      <div class="tl-item reveal" data-side="right">
+        <div class="tl-dot"><span></span></div>
+        <div class="tl-content">
+          <span class="tl-year">2024</span>
           <h3>Tham gia CTF & Cybersecurity</h3>
-          <p>Bắt đầu tham gia các cuộc thi Capture The Flag, nghiên cứu về ethical hacking và network security.</p>
+          <p>Bắt đầu tham gia các cuộc thi Capture The Flag, nghiên cứu ethical hacking.</p>
         </div>
       </div>
-      <div class="timeline-item reveal" data-side="left">
-        <div class="tl-dot"></div>
-        <div class="tl-card">
-          <span class="tl-date">2024</span>
+      <div class="tl-item reveal" data-side="left">
+        <div class="tl-dot"><span></span></div>
+        <div class="tl-content">
+          <span class="tl-year">2024</span>
           <h3>Thành lập CoderHouse</h3>
-          <p>Sáng tạo nền tảng dev hub, xây dựng cộng đồng developer và phát triển các công cụ bảo mật.</p>
+          <p>Sáng tạo nền tảng dev hub, xây dựng cộng đồng developer và phát triển công cụ bảo mật.</p>
         </div>
       </div>
-      <div class="timeline-item reveal" data-side="right">
-        <div class="tl-dot"></div>
-        <div class="tl-card">
-          <span class="tl-date">2025</span>
+      <div class="tl-item reveal" data-side="right">
+        <div class="tl-dot"><span></span></div>
+        <div class="tl-content">
+          <span class="tl-year">2025</span>
           <h3>AI & Machine Learning</h3>
-          <p>Phát triển DeniaGPT, kết hợp AI với bảo mật, xây dựng các giải pháp tự động hóa thông minh.</p>
+          <p>Phát triển DeniaGPT, kết hợp AI với bảo mật, xây dựng giải pháp tự động hóa.</p>
         </div>
       </div>
-      <div class="timeline-item reveal" data-side="left">
-        <div class="tl-dot"></div>
-        <div class="tl-card">
-          <span class="tl-date">Tương lai</span>
+      <div class="tl-item reveal" data-side="left">
+        <div class="tl-dot"><span></span></div>
+        <div class="tl-content">
+          <span class="tl-year">Tương lai</span>
           <h3>Full-Stack & DevSecOps</h3>
-          <p>Mục tiêu trở thành Full-Stack Developer với chuyên môn DevSecOps, đóng góp cho open source.</p>
+          <p>Mục tiêu trở thành Full-Stack Developer với chuyên môn DevSecOps, đóng góp open source.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SKILLS -->
-<section id="skills" class="sec alt" aria-label="Skills">
+<!-- ═══════════ SKILLS ═══════════ -->
+<section id="skills" class="section" aria-label="Skills">
+  <div class="section-bg sb-skills"></div>
   <div class="container">
-    <div class="sec-head centered">
-      <span class="sec-tag reveal">Expertise</span>
-      <h2 class="sec-title reveal">Kỹ năng &amp; Thành thạo</h2>
-      <p class="sec-desc reveal">Những công nghệ và lĩnh vực tôi đã dày công nghiên cứu</p>
+    <div class="sec-header sec-header--center">
+      <span class="sec-tag">Expertise</span>
+      <h2 class="sec-title">Kỹ năng &amp; Thành thạo</h2>
+      <p class="sec-desc">Những công nghệ và lĩnh vực tôi đã dày công nghiên cứu</p>
     </div>
     <div class="skills-layout">
-      <div class="skills-bars">
-        <div class="skill reveal"><div class="sk-head"><span>Frontend Development</span><span class="sk-val" data-n="90">0%</span></div><div class="sk-track"><div class="sk-fill" data-w="90"></div></div></div>
-        <div class="skill reveal"><div class="sk-head"><span>Backend Development</span><span class="sk-val" data-n="85">0%</span></div><div class="sk-track"><div class="sk-fill" data-w="85"></div></div></div>
-        <div class="skill reveal"><div class="sk-head"><span>Cybersecurity</span><span class="sk-val" data-n="80">0%</span></div><div class="sk-track"><div class="sk-fill" data-w="80"></div></div></div>
-        <div class="skill reveal"><div class="sk-head"><span>Penetration Testing</span><span class="sk-val" data-n="75">0%</span></div><div class="sk-track"><div class="sk-fill" data-w="75"></div></div></div>
-        <div class="skill reveal"><div class="sk-head"><span>Python &amp; AI/ML</span><span class="sk-val" data-n="88">0%</span></div><div class="sk-track"><div class="sk-fill" data-w="88"></div></div></div>
+      <div class="skill-bars">
+        <div class="skill-row reveal">
+          <div class="skill-info">
+            <div class="skill-icon si-1"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M5 13L9 5L13 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 16H15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+            <div><span class="skill-name">Frontend Development</span><span class="skill-sub">React, Next.js, HTML/CSS</span></div>
+          </div>
+          <span class="skill-pct" data-n="90">0%</span>
+          <div class="skill-track"><div class="skill-fill sf-1" data-w="90"></div></div>
+        </div>
+        <div class="skill-row reveal">
+          <div class="skill-info">
+            <div class="skill-icon si-2"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="4" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M6 9H12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="6" cy="9" r="1" fill="currentColor"/></svg></div>
+            <div><span class="skill-name">Backend Development</span><span class="skill-sub">Node.js, Python, API Design</span></div>
+          </div>
+          <span class="skill-pct" data-n="85">0%</span>
+          <div class="skill-track"><div class="skill-fill sf-2" data-w="85"></div></div>
+        </div>
+        <div class="skill-row reveal">
+          <div class="skill-info">
+            <div class="skill-icon si-3"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2L2 6V12L9 16L16 12V6L9 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="9" cy="9" r="2" stroke="currentColor" stroke-width="1.5"/></svg></div>
+            <div><span class="skill-name">Cybersecurity</span><span class="skill-sub">Network Security, Forensics</span></div>
+          </div>
+          <span class="skill-pct" data-n="80">0%</span>
+          <div class="skill-track"><div class="skill-fill sf-3" data-w="80"></div></div>
+        </div>
+        <div class="skill-row reveal">
+          <div class="skill-info">
+            <div class="skill-icon si-4"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M9 5V9L12 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><span class="skill-name">Penetration Testing</span><span class="skill-sub">Vulnerability Assessment</span></div>
+          </div>
+          <span class="skill-pct" data-n="75">0%</span>
+          <div class="skill-track"><div class="skill-fill sf-4" data-w="75"></div></div>
+        </div>
+        <div class="skill-row reveal">
+          <div class="skill-info">
+            <div class="skill-icon si-5"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 14L8 6L12 10L16 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4" cy="14" r="1.5" fill="currentColor"/><circle cx="12" cy="10" r="1.5" fill="currentColor"/></svg></div>
+            <div><span class="skill-name">Python &amp; AI/ML</span><span class="skill-sub">LangChain, OpenAI, NLP</span></div>
+          </div>
+          <span class="skill-pct" data-n="88">0%</span>
+          <div class="skill-track"><div class="skill-fill sf-5" data-w="88"></div></div>
+        </div>
       </div>
-      <div class="tech-stack reveal">
-        <h3 class="ts-title">Tech Stack</h3>
-        <div class="ts-grid">
-          <div class="ts-item"><div class="ts-icon">Py</div><span>Python</span></div>
-          <div class="ts-item"><div class="ts-icon">JS</div><span>JavaScript</span></div>
-          <div class="ts-item"><div class="ts-icon">TS</div><span>TypeScript</span></div>
-          <div class="ts-item"><div class="ts-icon">Re</div><span>React</span></div>
-          <div class="ts-item"><div class="ts-icon">Nj</div><span>Next.js</span></div>
-          <div class="ts-item"><div class="ts-icon">No</div><span>Node.js</span></div>
-          <div class="ts-item"><div class="ts-icon">Du</div><span>Docker</span></div>
-          <div class="ts-item"><div class="ts-icon">Li</div><span>Linux</span></div>
-          <div class="ts-item"><div class="ts-icon">Gi</div><span>Git</span></div>
-          <div class="ts-item"><div class="ts-icon">Sq</div><span>SQL</span></div>
-          <div class="ts-item"><div class="ts-icon">Rs</div><span>Rust</span></div>
-          <div class="ts-item"><div class="ts-icon">CT</div><span>CTF</span></div>
+      <div class="tech-panel reveal">
+        <h3 class="tp-title">Tech Stack</h3>
+        <div class="tp-grid">
+          <div class="tp-item"><div class="tp-ico tp-py">Py</div><span>Python</span></div>
+          <div class="tp-item"><div class="tp-ico tp-js">JS</div><span>JavaScript</span></div>
+          <div class="tp-item"><div class="tp-ico tp-ts">TS</div><span>TypeScript</span></div>
+          <div class="tp-item"><div class="tp-ico tp-re">Re</div><span>React</span></div>
+          <div class="tp-item"><div class="tp-ico tp-nj">Nj</div><span>Next.js</span></div>
+          <div class="tp-item"><div class="tp-ico tp-no">No</div><span>Node.js</span></div>
+          <div class="tp-item"><div class="tp-ico tp-du">Du</div><span>Docker</span></div>
+          <div class="tp-item"><div class="tp-ico tp-li">Li</div><span>Linux</span></div>
+          <div class="tp-item"><div class="tp-ico tp-gi">Gi</div><span>Git</span></div>
+          <div class="tp-item"><div class="tp-ico tp-sq">Sq</div><span>SQL</span></div>
+          <div class="tp-item"><div class="tp-ico tp-rs">Rs</div><span>Rust</span></div>
+          <div class="tp-item"><div class="tp-ico tp-ct">CT</div><span>CTF</span></div>
         </div>
       </div>
     </div>
-    <div class="tag-group reveal">
-      <span class="t">Network Forensics</span><span class="t">API Design</span><span class="t">RESTful</span><span class="t">WebSocket</span><span class="t">CI/CD</span><span class="t">Git</span>
+    <div class="extra-tags reveal">
+      <span class="etag">Network Forensics</span>
+      <span class="etag">API Design</span>
+      <span class="etag">RESTful</span>
+      <span class="etag">WebSocket</span>
+      <span class="etag">CI/CD</span>
     </div>
   </div>
 </section>
 
-<!-- PROJECTS -->
-<section id="projects" class="sec" aria-label="Projects">
+<!-- ═══════════ PROJECTS ═══════════ -->
+<section id="projects" class="section section--alt" aria-label="Projects">
   <div class="container">
-    <div class="sec-head centered">
-      <span class="sec-tag reveal">Portfolio</span>
-      <h2 class="sec-title reveal">Sản phẩm nổi trội</h2>
-      <p class="sec-desc reveal">Những dự án tôi tâm huyết nhất</p>
+    <div class="sec-header sec-header--center">
+      <span class="sec-tag">Portfolio</span>
+      <h2 class="sec-title">Sản phẩm nổi trội</h2>
+      <p class="sec-desc">Những dự án tôi tâm huyết nhất</p>
     </div>
     <div class="proj-grid">
-      <article class="card proj-card featured reveal"><div class="card-bar"></div><div class="proj-badge">Featured</div><div class="pico"><svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true"><rect x="4" y="6" width="28" height="24" rx="3" stroke="currentColor" stroke-width="2"/><circle cx="18" cy="15" r="3" stroke="currentColor" stroke-width="2"/><path d="M10 27C10 22.5 13.5 20 18 20C22.5 20 26 22.5 26 27" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><h3>DeniaGPT</h3><p>Trợ lý AI thông minh tích hợp GPT, hỗ trợ chat tự nhiên, sinh code, phân tích dữ liệu và tự động hóa tác vụ.</p><div class="pt"><span>Python</span><span>OpenAI</span><span>LangChain</span></div></article>
-      <article class="card proj-card reveal"><div class="card-bar"></div><div class="pico"><svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true"><circle cx="18" cy="18" r="14" stroke="currentColor" stroke-width="2"/><circle cx="18" cy="18" r="6" stroke="currentColor" stroke-width="2"/><line x1="18" y1="4" x2="18" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="18" y1="28" x2="18" y2="32" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4" y1="18" x2="8" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="28" y1="18" x2="32" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><h3>Scan Port Tool</h3><p>Công cụ quét cổng mạng hiệu năng cao, phát hiện dịch vụ, fingerprint OS và phân tích bảo mật real-time.</p><div class="pt"><span>Python</span><span>Networking</span><span>Security</span></div></article>
-      <article class="card proj-card reveal"><div class="card-bar"></div><div class="pico"><svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true"><path d="M6 12L18 6L30 12V24L18 30L6 24V12Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="18" cy="18" r="3" stroke="currentColor" stroke-width="2"/><line x1="18" y1="6" x2="18" y2="15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="18" y1="21" x2="18" y2="30" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><h3>DeniaHub</h3><p>Nền tảng trung tâm tích hợp công cụ dev, quản lý dự án, CI/CD pipeline và cộng đồng mã nguồn mở.</p><div class="pt"><span>Next.js</span><span>Node.js</span><span>Docker</span></div></article>
-      <article class="card proj-card reveal"><div class="card-bar"></div><div class="proj-badge security">Security</div><div class="pico"><svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true"><rect x="6" y="8" width="24" height="20" rx="2" stroke="currentColor" stroke-width="2"/><circle cx="18" cy="18" r="4" stroke="currentColor" stroke-width="2"/><path d="M10 8V6M26 8V6M10 28V30M26 28V30" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><h3>Protect-Anti DDoS</h3><p>Lá chắn mạng thông minh phát hiện, giảm thiểu và ghi log các vector tấn công DDoS theo thời gian thực.</p><div class="pt"><span>Python</span><span>ML</span><span>Defense</span></div></article>
-      <article class="card proj-card reveal"><div class="card-bar"></div><div class="proj-badge security">Security</div><div class="pico"><svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true"><rect x="6" y="10" width="24" height="16" rx="2" stroke="currentColor" stroke-width="2"/><path d="M12 22L16 18L20 22L24 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="14" r="1.5" fill="currentColor"/></svg></div><h3>Credential Auditor</h3><p>Công cụ kiểm tra bảo mật credentials, phát hiện lỗ hổng xác thực trong môi trường pen testing được ủy quyền.</p><div class="pt"><span>Python</span><span>Pen Testing</span><span>Audit</span></div></article>
-      <article class="card proj-card reveal"><div class="card-bar"></div><div class="pico"><svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true"><circle cx="18" cy="18" r="14" stroke="currentColor" stroke-width="2" stroke-dasharray="4 3"/><circle cx="18" cy="18" r="8" stroke="currentColor" stroke-width="2" stroke-dasharray="3 3"/><circle cx="18" cy="18" r="3" stroke="currentColor" stroke-width="2"/></svg></div><h3>Network Stress Lab</h3><p>Sandbox stress-test kiểm tra khả năng chịu tải hạ tầng mạng, mô phỏng traffic và phân tích bottleneck.</p><div class="pt"><span>Python</span><span>Research</span><span>Network</span></div></article>
-      <article class="card proj-card reveal"><div class="card-bar"></div><div class="pico"><svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true"><path d="M6 8H30V28H6V8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 20L16 16L20 20L24 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 4V8M26 4V8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><h3>DeniAlert</h3><p>Hệ thống giám sát và cảnh báo bảo mật thời gian thực, phát hiện bất thường và gửi thông báo tức thì.</p><div class="pt"><span>Python</span><span>Monitoring</span><span>Real-time</span></div></article>
-      <article class="card proj-card reveal"><div class="card-bar"></div><div class="pico"><svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true"><polyline points="8,28 14,18 20,22 28,8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8" cy="28" r="2" fill="currentColor"/><circle cx="14" cy="18" r="2" fill="currentColor"/><circle cx="20" cy="22" r="2" fill="currentColor"/><circle cx="28" cy="8" r="2" fill="currentColor"/></svg></div><h3>CodeForge</h3><p>Công cụ sinh code tự động dựa trên template thông minh, hỗ trợ đa ngôn ngữ và tối ưu quy trình dev.</p><div class="pt"><span>Python</span><span>Code Gen</span><span>Automation</span></div></article>
+      <article class="proj-card proj-card--feat reveal">
+        <div class="proj-glow"></div>
+        <div class="proj-badge-row"><span class="pbadge pbadge--hot">Featured</span></div>
+        <div class="proj-icon"><svg width="32" height="32" viewBox="0 0 36 36" fill="none"><rect x="4" y="6" width="28" height="24" rx="3" stroke="currentColor" stroke-width="2"/><circle cx="18" cy="15" r="3" stroke="currentColor" stroke-width="2"/><path d="M10 27C10 22.5 13.5 20 18 20C22.5 20 26 22.5 26 27" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <h3>DeniaGPT</h3>
+        <p>Trợ lý AI thông minh tích hợp GPT, hỗ trợ chat tự nhiên, sinh code, phân tích dữ liệu.</p>
+        <div class="proj-tags"><span>Python</span><span>OpenAI</span><span>LangChain</span></div>
+      </article>
+      <article class="proj-card reveal">
+        <div class="proj-icon"><svg width="32" height="32" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="14" stroke="currentColor" stroke-width="2"/><circle cx="18" cy="18" r="6" stroke="currentColor" stroke-width="2"/><line x1="18" y1="4" x2="18" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="18" y1="28" x2="18" y2="32" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <h3>Scan Port Tool</h3>
+        <p>Công cụ quét cổng mạng hiệu năng cao, phát hiện dịch vụ và phân tích bảo mật real-time.</p>
+        <div class="proj-tags"><span>Python</span><span>Networking</span><span>Security</span></div>
+      </article>
+      <article class="proj-card reveal">
+        <div class="proj-icon"><svg width="32" height="32" viewBox="0 0 36 36" fill="none"><path d="M6 12L18 6L30 12V24L18 30L6 24V12Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="18" cy="18" r="3" stroke="currentColor" stroke-width="2"/></svg></div>
+        <h3>DeniaHub</h3>
+        <p>Nền tảng trung tâm tích hợp công cụ dev, quản lý dự án, CI/CD pipeline.</p>
+        <div class="proj-tags"><span>Next.js</span><span>Node.js</span><span>Docker</span></div>
+      </article>
+      <article class="proj-card reveal">
+        <div class="proj-badge-row"><span class="pbadge pbadge--sec">Security</span></div>
+        <div class="proj-icon pi-red"><svg width="32" height="32" viewBox="0 0 36 36" fill="none"><rect x="6" y="8" width="24" height="20" rx="2" stroke="currentColor" stroke-width="2"/><circle cx="18" cy="18" r="4" stroke="currentColor" stroke-width="2"/><path d="M10 8V6M26 8V6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <h3>Protect-Anti DDoS</h3>
+        <p>Lá chắn mạng thông minh phát hiện, giảm thiểu và ghi log vector tấn công DDoS.</p>
+        <div class="proj-tags"><span>Python</span><span>ML</span><span>Defense</span></div>
+      </article>
+      <article class="proj-card reveal">
+        <div class="proj-badge-row"><span class="pbadge pbadge--sec">Security</span></div>
+        <div class="proj-icon pi-red"><svg width="32" height="32" viewBox="0 0 36 36" fill="none"><rect x="6" y="10" width="24" height="16" rx="2" stroke="currentColor" stroke-width="2"/><path d="M12 22L16 18L20 22L24 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Credential Auditor</h3>
+        <p>Công cụ kiểm tra bảo mật credentials, phát hiện lỗ hổng xác thực.</p>
+        <div class="proj-tags"><span>Python</span><span>Pen Testing</span><span>Audit</span></div>
+      </article>
+      <article class="proj-card reveal">
+        <div class="proj-icon"><svg width="32" height="32" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="14" stroke="currentColor" stroke-width="2" stroke-dasharray="4 3"/><circle cx="18" cy="18" r="8" stroke="currentColor" stroke-width="2" stroke-dasharray="3 3"/><circle cx="18" cy="18" r="3" stroke="currentColor" stroke-width="2"/></svg></div>
+        <h3>Network Stress Lab</h3>
+        <p>Sandbox stress-test kiểm tra khả năng chịu tải hạ tầng mạng.</p>
+        <div class="proj-tags"><span>Python</span><span>Research</span><span>Network</span></div>
+      </article>
+      <article class="proj-card reveal">
+        <div class="proj-icon"><svg width="32" height="32" viewBox="0 0 36 36" fill="none"><path d="M6 8H30V28H6V8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 20L16 16L20 20L24 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>DeniAlert</h3>
+        <p>Hệ thống giám sát và cảnh báo bảo mật thời gian thực.</p>
+        <div class="proj-tags"><span>Python</span><span>Monitoring</span><span>Real-time</span></div>
+      </article>
+      <article class="proj-card reveal">
+        <div class="proj-icon"><svg width="32" height="32" viewBox="0 0 36 36" fill="none"><polyline points="8,28 14,18 20,22 28,8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8" cy="28" r="2" fill="currentColor"/><circle cx="14" cy="18" r="2" fill="currentColor"/><circle cx="20" cy="22" r="2" fill="currentColor"/><circle cx="28" cy="8" r="2" fill="currentColor"/></svg></div>
+        <h3>CodeForge</h3>
+        <p>Công cụ sinh code tự động dựa trên template thông minh.</p>
+        <div class="proj-tags"><span>Python</span><span>Code Gen</span><span>Automation</span></div>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- WHY ME -->
-<section id="why" class="sec alt" aria-label="Why Me">
+<!-- ═══════════ WHY ME ═══════════ -->
+<section id="why" class="section" aria-label="Why Me">
+  <div class="section-bg sb-why"></div>
   <div class="container">
-    <div class="sec-head centered">
-      <span class="sec-tag reveal">Why Me</span>
-      <h2 class="sec-title reveal">Tại sao chọn tôi?</h2>
-      <p class="sec-desc reveal">Những giá trị tôi mang đến cho dự án của bạn</p>
+    <div class="sec-header sec-header--center">
+      <span class="sec-tag">Why Me</span>
+      <h2 class="sec-title">Tại sao chọn tôi?</h2>
+      <p class="sec-desc">Những giá trị tôi mang đến cho dự án của bạn</p>
     </div>
     <div class="why-grid">
       <div class="why-card reveal">
-        <div class="why-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M14 2L17.5 9.5L26 10.5L20 16.5L21.5 25L14 21L6.5 25L8 16.5L2 10.5L10.5 9.5L14 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></div>
+        <div class="wc-icon wc-star"><svg width="24" height="24" viewBox="0 0 28 28" fill="none"><path d="M14 2L17.5 9.5L26 10.5L20 16.5L21.5 25L14 21L6.5 25L8 16.5L2 10.5L10.5 9.5L14 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></div>
         <h3>Chất lượng cao</h3>
-        <p>Mỗi dòng code được viết tỉ mỉ, tối ưu và dễ maintain. Không compromise về chất lượng.</p>
+        <p>Mỗi dòng code được viết tỉ mỉ, tối ưu và dễ maintain.</p>
       </div>
       <div class="why-card reveal">
-        <div class="why-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect x="3" y="6" width="22" height="16" rx="3" stroke="currentColor" stroke-width="2"/><path d="M3 12H25" stroke="currentColor" stroke-width="2"/><circle cx="8" cy="17" r="1.5" fill="currentColor"/></svg></div>
+        <div class="wc-icon wc-shield"><svg width="24" height="24" viewBox="0 0 28 28" fill="none"><rect x="3" y="6" width="22" height="16" rx="3" stroke="currentColor" stroke-width="2"/><path d="M3 12H25" stroke="currentColor" stroke-width="2"/></svg></div>
         <h3>Bảo mật ưu tiên</h3>
-        <p>Áp dụng best practices bảo mật trong mọi dự án, từ code đến infrastructure.</p>
+        <p>Áp dụng best practices bảo mật trong mọi dự án.</p>
       </div>
       <div class="why-card reveal">
-        <div class="why-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><circle cx="14" cy="14" r="11" stroke="currentColor" stroke-width="2"/><path d="M14 7V14L19 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="wc-icon wc-clock"><svg width="24" height="24" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="11" stroke="currentColor" stroke-width="2"/><path d="M14 7V14L19 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <h3>Đúng deadline</h3>
-        <p>Quản lý thời gian hiệu quả, cam kết giao hàng đúng hạn với chất lượng tốt nhất.</p>
+        <p>Quản lý thời gian hiệu quả, cam kết giao hàng đúng hạn.</p>
       </div>
       <div class="why-card reveal">
-        <div class="why-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M5 14C5 9 9 5 14 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M23 14C23 19 19 23 14 23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="14" cy="14" r="3" stroke="currentColor" stroke-width="2"/><path d="M14 3V5M14 23V25M3 14H5M23 14H25" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="wc-icon wc-code"><svg width="24" height="24" viewBox="0 0 28 28" fill="none"><path d="M5 14C5 9 9 5 14 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M23 14C23 19 19 23 14 23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="14" cy="14" r="3" stroke="currentColor" stroke-width="2"/></svg></div>
         <h3>Full-Stack linh hoạt</h3>
-        <p>Thành thạo cả frontend và backend, có thể xử lý toàn bộ stack công nghệ.</p>
+        <p>Thành thạo cả frontend và backend, xử lý toàn bộ stack.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact" class="sec" aria-label="Contact">
+<!-- ═══════════ CONTACT ═══════════ -->
+<section id="contact" class="section section--alt" aria-label="Contact">
   <div class="container">
-    <div class="sec-head centered">
-      <span class="sec-tag reveal">Contact</span>
-      <h2 class="sec-title reveal">Kết nối với tôi</h2>
-      <p class="sec-desc reveal">Cùng nhau xây dựng những điều tuyệt vời</p>
+    <div class="sec-header sec-header--center">
+      <span class="sec-tag">Contact</span>
+      <h2 class="sec-title">Kết nối với tôi</h2>
+      <p class="sec-desc">Cùng nhau xây dựng những điều tuyệt vời</p>
     </div>
     <div class="contact-layout">
-      <div class="contact-grid reveal">
-        <a href="mailto:thienantran1268@gmail.com" class="c-card" aria-label="Email">
-          <div class="c-icon"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true"><rect x="2" y="5" width="22" height="16" rx="3" stroke="currentColor" stroke-width="2"/><path d="M2 8L13 16L24 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <span class="c-l">Email</span><span class="c-v">thienantran1268@gmail.com</span>
+      <div class="contact-cards">
+        <a href="mailto:thienantran1268@gmail.com" class="ccard reveal" aria-label="Email">
+          <div class="ccard-icon cc-email"><svg width="22" height="22" viewBox="0 0 26 26" fill="none"><rect x="2" y="5" width="22" height="16" rx="3" stroke="currentColor" stroke-width="2"/><path d="M2 8L13 16L24 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="ccard-info"><span class="ccard-label">Email</span><span class="ccard-val">thienantran1268@gmail.com</span></div>
+          <svg class="ccard-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H5M12 4V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-        <a href="https://github.com/TDz888" target="_blank" rel="noopener noreferrer" class="c-card" aria-label="GitHub">
-          <div class="c-icon"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true"><path d="M13 2C6.92 2 2 6.92 2 13C2 17.86 5.14 22.08 9.48 23.58C10.08 23.7 10.32 23.34 10.32 23.02V20.6C6.74 21.44 5.68 19.16 5.68 19.16C5.14 17.72 4.34 17.3 4.34 17.3C3.22 16.52 4.42 16.54 4.42 16.54C5.66 16.62 6.34 17.82 6.34 17.82C7.46 19.74 9.32 19.18 10.42 18.76C10.52 17.98 10.84 17.44 11.2 17.12C8.7 16.84 6.06 15.94 6.06 11.94C6.06 10.78 6.46 9.84 7.12 9.1C7 8.82 6.62 7.72 7.18 6.26C7.18 6.26 8.04 5.96 10.28 7.34C11.08 7.1 11.96 6.98 12.82 6.98C13.68 6.98 14.56 7.1 15.36 7.34C17.6 5.96 18.46 6.26 18.46 6.26C19.02 7.72 18.64 8.82 18.52 9.1C19.18 9.84 19.58 10.78 19.58 11.94C19.58 15.96 16.92 16.82 14.4 17.1C14.86 17.52 15.32 18.36 15.32 19.6V23.02C15.32 23.34 15.56 23.72 16.16 23.58C20.48 22.08 23.64 17.86 23.64 13C23.64 6.92 19.08 2 13 2Z" fill="currentColor"/></svg></div>
-          <span class="c-l">GitHub</span><span class="c-v">TDz888</span>
+        <a href="https://github.com/TDz888" target="_blank" rel="noopener noreferrer" class="ccard reveal" aria-label="GitHub">
+          <div class="ccard-icon cc-gh"><svg width="22" height="22" viewBox="0 0 26 26" fill="none"><path d="M13 2C6.92 2 2 6.92 2 13C2 17.86 5.14 22.08 9.48 23.58C10.08 23.7 10.32 23.34 10.32 23.02V20.6C6.74 21.44 5.68 19.16 5.68 19.16C5.14 17.72 4.34 17.3 4.34 17.3C3.22 16.52 4.42 16.54 4.42 16.54C5.66 16.62 6.34 17.82 6.34 17.82C7.46 19.74 9.32 19.18 10.42 18.76C10.52 17.98 10.84 17.44 11.2 17.12C8.7 16.84 6.06 15.94 6.06 11.94C6.06 10.78 6.46 9.84 7.12 9.1C7 8.82 6.62 7.72 7.18 6.26C7.18 6.26 8.04 5.96 10.28 7.34C11.08 7.1 11.96 6.98 12.82 6.98C13.68 6.98 14.56 7.1 15.36 7.34C17.6 5.96 18.46 6.26 18.46 6.26C19.02 7.72 18.64 8.82 18.52 9.1C19.18 9.84 19.58 10.78 19.58 11.94C19.58 15.96 16.92 16.82 14.4 17.1C14.86 17.52 15.32 18.36 15.32 19.6V23.02C15.32 23.34 15.56 23.72 16.16 23.58C20.48 22.08 23.64 17.86 23.64 13C23.64 6.92 19.08 2 13 2Z" fill="currentColor"/></svg></div>
+          <div class="ccard-info"><span class="ccard-label">GitHub</span><span class="ccard-val">TDz888</span></div>
+          <svg class="ccard-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H5M12 4V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-        <a href="https://discord.com/users/luxcipher" target="_blank" rel="noopener noreferrer" class="c-card" aria-label="Discord">
-          <div class="c-icon"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true"><path d="M21.28 5.38C19.74 4.66 18.1 4.14 16.38 3.84C16.18 4.22 15.94 4.74 15.8 5.12C13.96 4.84 12.12 4.84 10.28 5.12C10.14 4.74 9.9 4.22 9.7 3.84C7.98 4.14 6.34 4.66 4.8 5.38C1.46 10.6 0.54 15.7 1 20.78C3.02 22.36 5.4 23.44 8 24.1C8.48 23.44 8.9 22.74 9.26 21.98C8.52 21.72 7.82 21.4 7.14 21.02C7.34 20.86 7.52 20.7 7.7 20.52C12.04 22.52 17.06 22.52 21.36 20.52C21.54 20.7 21.72 20.86 21.92 21.02C21.24 21.4 20.54 21.72 19.8 21.98C20.16 22.74 20.58 23.44 21.06 24.1C23.66 23.44 26.04 22.36 28.06 20.78C28.58 15.08 27.14 9.96 21.28 5.38ZM9.44 18.06C8.04 18.06 6.9 16.78 6.9 15.22C6.9 13.66 8.04 12.38 9.44 12.38C10.84 12.38 11.98 13.66 11.98 15.22C11.98 16.78 10.84 18.06 9.44 18.06ZM16.64 18.06C15.24 18.06 14.1 16.78 14.1 15.22C14.1 13.66 15.24 12.38 16.64 12.38C18.04 12.38 19.18 13.66 19.18 15.22C19.18 16.78 18.04 18.06 16.64 18.06Z" fill="currentColor"/></svg></div>
-          <span class="c-l">Discord</span><span class="c-v">@luxcipher</span>
+        <a href="https://discord.com/users/luxcipher" target="_blank" rel="noopener noreferrer" class="ccard reveal" aria-label="Discord">
+          <div class="ccard-icon cc-dc"><svg width="22" height="22" viewBox="0 0 26 26" fill="none"><path d="M21.28 5.38C19.74 4.66 18.1 4.14 16.38 3.84C16.18 4.22 15.94 4.74 15.8 5.12C13.96 4.84 12.12 4.84 10.28 5.12C10.14 4.74 9.9 4.22 9.7 3.84C7.98 4.14 6.34 4.66 4.8 5.38C1.46 10.6 0.54 15.7 1 20.78C3.02 22.36 5.4 23.44 8 24.1C8.48 23.44 8.9 22.74 9.26 21.98C8.52 21.72 7.82 21.4 7.14 21.02C7.34 20.86 7.52 20.7 7.7 20.52C12.04 22.52 17.06 22.52 21.36 20.52C21.54 20.7 21.72 20.86 21.92 21.02C21.24 21.4 20.54 21.72 19.8 21.98C20.16 22.74 20.58 23.44 21.06 24.1C23.66 23.44 26.04 22.36 28.06 20.78C28.58 15.08 27.14 9.96 21.28 5.38ZM9.44 18.06C8.04 18.06 6.9 16.78 6.9 15.22C6.9 13.66 8.04 12.38 9.44 12.38C10.84 12.38 11.98 13.66 11.98 15.22C11.98 16.78 10.84 18.06 9.44 18.06ZM16.64 18.06C15.24 18.06 14.1 16.78 14.1 15.22C14.1 13.66 15.24 12.38 16.64 12.38C18.04 12.38 19.18 13.66 19.18 15.22C19.18 16.78 18.04 18.06 16.64 18.06Z" fill="currentColor"/></svg></div>
+          <div class="ccard-info"><span class="ccard-label">Discord</span><span class="ccard-val">@luxcipher</span></div>
+          <svg class="ccard-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H5M12 4V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
       </div>
       <div class="contact-quote reveal">
-        <div class="quote-box">
-          <svg class="quote-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M6 18C6 13.5 9 10 13 8L14 10C11 11.5 9.5 13.5 9 16H13V24H6V18ZM19 18C19 13.5 22 10 26 8L27 10C24 11.5 22.5 13.5 22 16H26V24H19V18Z" fill="currentColor"/></svg>
-          <p>"Code là ngôn ngữ của tương lai. Bảo mật là chìa khóa của niềm tin."</p>
-          <span class="quote-author">— Trần Thiên Ân</span>
+        <div class="cq-box">
+          <div class="cq-glow"></div>
+          <svg class="cq-mark" width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M8 22C8 16.5 12 12 17 10L18 13C14.5 14.5 12.5 17 12 20H17V30H8V22ZM23 22C23 16.5 27 12 32 10L33 13C29.5 14.5 27.5 17 27 20H32V30H23V22Z" fill="currentColor" opacity="0.15"/></svg>
+          <p class="cq-text">"Code là ngôn ngữ của tương lai. Bảo mật là chìa khóa của niềm tin."</p>
+          <span class="cq-author">— Trần Thiên Ân</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer class="footer" role="contentinfo">
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="footer">
+  <div class="footer-glow"></div>
   <div class="container">
     <div class="ft-grid">
       <div class="ft-brand">
         <a href="#hero" class="ft-logo">
-          <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true"><path d="M5 6L20 13L5 20" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 13H20" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+          <div class="logo-icon"><svg width="18" height="18" viewBox="0 0 26 26" fill="none"><path d="M5 6L20 13L5 20" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 13H20" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div>
           <span>TA</span>
         </a>
-        <p class="ft-note">Made with passion &amp; solitude · &lt;TA/&gt;</p>
-        <div class="terminal"><span class="term-p">$</span><span id="term-txt"></span><span class="term-c"></span></div>
+        <p class="ft-tagline">Made with passion &amp; solitude</p>
+        <div class="terminal"><span class="term-prompt">$</span><span id="term-txt"></span><span class="term-cursor"></span></div>
       </div>
-      <div class="ft-nav">
+      <div class="ft-col">
         <h4>Navigation</h4>
-        <div class="ft-links"><a href="#hero">Home</a><a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#contact">Contact</a></div>
+        <a href="#hero">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
       </div>
-      <div class="ft-social">
+      <div class="ft-col">
         <h4>Connect</h4>
-        <div class="ft-links"><a href="https://github.com/TDz888" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://discord.com/users/luxcipher" target="_blank" rel="noopener noreferrer">Discord</a><a href="mailto:thienantran1268@gmail.com">Email</a></div>
+        <a href="https://github.com/TDz888" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://discord.com/users/luxcipher" target="_blank" rel="noopener noreferrer">Discord</a>
+        <a href="mailto:thienantran1268@gmail.com">Email</a>
       </div>
     </div>
     <div class="ft-bottom">
-      <p class="ft-copy">&copy; 2025 Lux Cipher. All rights reserved.</p>
-      <p class="ft-made">Built with <span class="ft-heart">&hearts;</span> by Trần Thiên Ân</p>
+      <p>&copy; 2025 Lux Cipher. All rights reserved.</p>
+      <p>Built with <span class="ft-heart">&hearts;</span> by Trần Thiên Ân</p>
     </div>
   </div>
 </footer>
 
 <button class="back-top" id="back-top" aria-label="Back to top">
-  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 16V4M4 10L10 4L16 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10L10 4L16 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </button>
 
 <script src="script.js"></script>
