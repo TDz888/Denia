@@ -22,37 +22,48 @@ window.addEventListener('resize', () => { isMobile = window.innerWidth < 640; })
   const saved = localStorage.getItem('theme');
   if (saved) html.setAttribute('data-theme', saved);
 
-  // Use existing theme overlay from HTML
   const overlay = document.getElementById('theme-overlay');
   if (!overlay) return;
 
   let transitioning = false;
-  btn.addEventListener('click', () => {
+  btn.addEventListener('click', (e) => {
     if (transitioning) return;
     transitioning = true;
     const cur = html.getAttribute('data-theme') || 'light';
     const next = cur === 'dark' ? 'light' : 'dark';
 
-    // Add transition class
+    // Get center coordinates of the toggle button relative to viewport
+    const rect = btn.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+    
+    overlay.style.setProperty('--ripple-x', `${x}px`);
+    overlay.style.setProperty('--ripple-y', `${y}px`);
+
+    // Ensure transition is active
+    overlay.style.transition = '';
+    
+    // Add transitioning classes
     html.classList.add('theme-transitioning');
+    overlay.className = `theme-overlay ${next} active`;
 
-    // Show overlay
-    overlay.className = 'theme-overlay ' + next + ' active';
-
-    // After overlay covers screen, switch theme
+    // Wait for clip-path animation to finish (650ms)
     setTimeout(() => {
       html.setAttribute('data-theme', next);
       localStorage.setItem('theme', next);
 
-      // Fade out overlay
-      setTimeout(() => {
-        overlay.classList.remove('active');
-        setTimeout(() => {
-          html.classList.remove('theme-transitioning');
-          transitioning = false;
-        }, 400);
-      }, 50);
-    }, 200);
+      // Hide overlay instantly
+      overlay.style.transition = 'none';
+      overlay.classList.remove('active');
+      
+      // Force layout reflow
+      overlay.offsetHeight;
+
+      // Restore transition for the next click
+      overlay.style.transition = '';
+      html.classList.remove('theme-transitioning');
+      transitioning = false;
+    }, 650);
   });
 })();
 
@@ -297,7 +308,7 @@ window.addEventListener('resize', () => { isMobile = window.innerWidth < 640; })
 
   function getColors() {
     const dark = document.documentElement.getAttribute('data-theme') === 'dark';
-    return dark ? ['129,140,248', '34,211,238', '251,191,36'] : ['99,102,241', '6,182,212', '245,158,11'];
+    return dark ? ['139,92,246', '236,72,153', '167,139,250'] : ['124,58,237', '236,72,153', '163,155,201'];
   }
 
   function resize() { w = canvas.width = canvas.offsetWidth; h = canvas.height = canvas.offsetHeight; }
