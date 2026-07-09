@@ -90,14 +90,13 @@ window.addEventListener('resize', () => { isMobile = window.innerWidth < 640; })
   if (NO_MOTION || isMobile) return;
   const glow = document.getElementById('cursor-glow');
   if (!glow) return;
-  let mx = 0, my = 0, cx = 0, cy = 0;
+  let mx = window.innerWidth / 2, my = window.innerHeight / 2, cx = mx, cy = my;
   document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; glow.classList.add('active'); });
   document.addEventListener('mouseleave', () => glow.classList.remove('active'));
   function animate() {
-    cx += (mx - cx) * 0.08;
-    cy += (my - cy) * 0.08;
-    glow.style.left = cx + 'px';
-    glow.style.top = cy + 'px';
+    cx += (mx - cx) * 0.15;
+    cy += (my - cy) * 0.15;
+    glow.style.transform = `translate3d(${cx}px, ${cy}px, 0) translate(-50%, -50%)`;
     requestAnimationFrame(animate);
   }
   animate();
