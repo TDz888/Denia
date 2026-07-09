@@ -25,6 +25,19 @@ window.addEventListener('resize', () => { isMobile = window.innerWidth < 640; })
   const overlay = document.getElementById('theme-overlay');
   if (!overlay) return;
 
+  const avatar = document.querySelector('.hero-avatar');
+  const updateAvatar = (theme) => {
+    if (!avatar) return;
+    if (theme === 'dark') {
+      avatar.src = 'https://cdn3.notevn.com/Gi5QyTc0oN.png';
+    } else {
+      avatar.src = 'https://cdn3.notevn.com/8mOXn0Ftve.png';
+    }
+  };
+
+  // Initial load
+  updateAvatar(html.getAttribute('data-theme') || 'light');
+
   let transitioning = false;
   btn.addEventListener('click', (e) => {
     if (transitioning) return;
@@ -51,6 +64,7 @@ window.addEventListener('resize', () => { isMobile = window.innerWidth < 640; })
     setTimeout(() => {
       html.setAttribute('data-theme', next);
       localStorage.setItem('theme', next);
+      updateAvatar(next);
 
       // Hide overlay instantly
       overlay.style.transition = 'none';
@@ -308,7 +322,7 @@ window.addEventListener('resize', () => { isMobile = window.innerWidth < 640; })
 
   function getColors() {
     const dark = document.documentElement.getAttribute('data-theme') === 'dark';
-    return dark ? ['139,92,246', '236,72,153', '167,139,250'] : ['124,58,237', '236,72,153', '163,155,201'];
+    return dark ? ['139,92,246', '236,72,153', '167,139,250'] : ['236,72,153', '139,92,246', '244,114,182'];
   }
 
   function resize() { w = canvas.width = canvas.offsetWidth; h = canvas.height = canvas.offsetHeight; }
