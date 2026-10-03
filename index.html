@@ -31,7 +31,7 @@
 </head>
 <body>
 
-  <!-- Theme transition overlay + sparkle burst container -->
+  <!-- Theme transition overlay -->
   <div id="themeWave" class="theme-wave" aria-hidden="true"></div>
   <div id="sparkleLayer" class="sparkle-layer" aria-hidden="true"></div>
 
@@ -74,12 +74,30 @@
 
       <ul class="nav-links" id="navLinks">
         <li><a href="#about" class="nav-link cursor-pointer">About</a></li>
-        <li><a href="#identity" class="nav-link cursor-pointer">Identity</a></li>
-        <li><a href="#timeline" class="nav-link cursor-pointer">Journey</a></li>
         <li><a href="#skills" class="nav-link cursor-pointer">Skills</a></li>
         <li><a href="#projects" class="nav-link cursor-pointer">Projects</a></li>
         <li><a href="#contact" class="nav-link cursor-pointer">Contact</a></li>
       </ul>
+
+      <!-- ⏰ Kawaii Clock -->
+      <div class="nav-clock" id="navClock" role="timer" aria-label="Current time">
+        <span class="clock-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 7v5l3 2"/>
+          </svg>
+        </span>
+        <div class="clock-digits">
+          <span class="digit-box"><span class="digit-content" data-slot="h1">0</span></span>
+          <span class="digit-box"><span class="digit-content" data-slot="h2">0</span></span>
+          <span class="clock-colon" aria-hidden="true">:</span>
+          <span class="digit-box"><span class="digit-content" data-slot="m1">0</span></span>
+          <span class="digit-box"><span class="digit-content" data-slot="m2">0</span></span>
+          <span class="clock-colon" aria-hidden="true">:</span>
+          <span class="digit-box"><span class="digit-content" data-slot="s1">0</span></span>
+          <span class="digit-box"><span class="digit-content" data-slot="s2">0</span></span>
+        </div>
+      </div>
 
       <div class="nav-actions">
         <button id="themeToggle" class="theme-toggle cursor-pointer" aria-label="Toggle theme">
@@ -88,7 +106,7 @@
             <svg class="icon-moon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
           </span>
         </button>
-        <a href="#contact" class="btn btn-primary nav-cta cursor-pointer">Say hi ♡</a>
+        <a href="#contact" class="btn btn-primary nav-cta cursor-pointer">Hi!</a>
         <button id="hamburger" class="hamburger cursor-pointer" aria-label="Open menu">
           <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
         </button>
@@ -389,7 +407,7 @@
       </div>
     </section>
 
-    <!-- PROJECTS (replaced Pricing) -->
+    <!-- PROJECTS -->
     <section id="projects" class="section reveal">
       <div class="section-container">
         <div class="section-header">
@@ -548,7 +566,7 @@
             </div>
           </article>
 
-          <!-- Coming Soon Card (visual filler) -->
+          <!-- Coming Soon -->
           <article class="project-card project-coming cursor-pointer">
             <div class="project-head">
               <div class="project-icon icon-dashed">
