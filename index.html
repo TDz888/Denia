@@ -3,19 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Trần Thiên Ân (Lux Cipher) — Frontend & Backend Developer · Cybersecurity · CTF Player. Kawaii portfolio with soft pastel aesthetics." />
-  <meta name="keywords" content="Trần Thiên Ân, Lux Cipher, Denia, Portfolio, Kawaii, Frontend Developer, Backend Developer, Cybersecurity, CTF, CoderHouse" />
+  <meta name="description" content="Trần Thiên Ân (Lux Cipher) — Frontend & Backend Developer · Cybersecurity · CTF Player. Kawaii portfolio with pastel aesthetics and handcrafted tools." />
+  <meta name="keywords" content="Trần Thiên Ân, Lux Cipher, Denia, DeniaGPT, Portfolio, Kawaii, Frontend Developer, Backend Developer, Cybersecurity, CTF, CoderHouse, C++ Tools" />
   <meta name="author" content="Trần Thiên Ân" />
   <meta name="theme-color" content="#FFD1DC" />
+  <meta name="color-scheme" content="light dark" />
 
-  <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Trần Thiên Ân · Lux Cipher — Kawaii Portfolio" />
   <meta property="og:description" content="Frontend & Backend Developer · Cybersecurity · CTF Player ✦ Kawaii Edition" />
   <meta property="og:url" content="https://github.com/TDz888/Denia" />
   <meta property="og:image" content="https://cdn3.notevn.com/1CfC8A8RVy.png" />
 
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Trần Thiên Ân · Lux Cipher" />
   <meta name="twitter:description" content="Frontend & Backend Developer · Cybersecurity · CTF Player" />
@@ -32,10 +31,11 @@
 </head>
 <body>
 
-  <!-- ========== THEME TRANSITION OVERLAY ========== -->
+  <!-- Theme transition overlay + sparkle burst container -->
   <div id="themeWave" class="theme-wave" aria-hidden="true"></div>
+  <div id="sparkleLayer" class="sparkle-layer" aria-hidden="true"></div>
 
-  <!-- ========== BACKGROUND DECORATIONS ========== -->
+  <!-- Background decorations -->
   <div class="bg-decor" aria-hidden="true">
     <div class="cloud cloud-1"></div>
     <div class="cloud cloud-2"></div>
@@ -48,7 +48,7 @@
     <div class="rainbow-blob blob-2"></div>
   </div>
 
-  <!-- ========== SKELETON LOADER ========== -->
+  <!-- Skeleton loader -->
   <div id="skeletonLoader" class="skeleton-loader" aria-hidden="true">
     <div class="skeleton-inner">
       <div class="skeleton-heart">
@@ -59,10 +59,10 @@
     </div>
   </div>
 
-  <!-- ========== SCROLL PROGRESS ========== -->
+  <!-- Scroll progress -->
   <div id="scrollProgress" class="scroll-progress" aria-hidden="true"></div>
 
-  <!-- ========== NAVBAR ========== -->
+  <!-- Navbar -->
   <header class="navbar" id="navbar">
     <nav class="nav-container" aria-label="Main navigation">
       <a href="#hero" class="nav-logo cursor-pointer" aria-label="Lux Cipher Home">
@@ -77,7 +77,7 @@
         <li><a href="#identity" class="nav-link cursor-pointer">Identity</a></li>
         <li><a href="#timeline" class="nav-link cursor-pointer">Journey</a></li>
         <li><a href="#skills" class="nav-link cursor-pointer">Skills</a></li>
-        <li><a href="#pricing" class="nav-link cursor-pointer">Pricing</a></li>
+        <li><a href="#projects" class="nav-link cursor-pointer">Projects</a></li>
         <li><a href="#contact" class="nav-link cursor-pointer">Contact</a></li>
       </ul>
 
@@ -97,7 +97,7 @@
   </header>
 
   <main>
-    <!-- ========== HERO ========== -->
+    <!-- HERO -->
     <section id="hero" class="hero">
       <div class="hero-container">
         <div class="hero-content">
@@ -122,7 +122,7 @@
           </p>
 
           <div class="hero-cta">
-            <a href="#skills" class="btn btn-primary cursor-pointer">
+            <a href="#projects" class="btn btn-primary cursor-pointer">
               Explore Projects
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
@@ -160,17 +160,14 @@
               />
             </div>
 
-            <!-- Orbiting sparkles -->
             <div class="orbit orbit-1"><span class="spark spark-pink"></span></div>
             <div class="orbit orbit-2"><span class="spark spark-mint"></span></div>
             <div class="orbit orbit-3"><span class="spark spark-blue"></span></div>
 
-            <!-- Corner sparkles -->
             <svg class="corner-sparkle cs-1" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 9.5 9 2 12l7.5 3L12 22l2.5-7L22 12l-7.5-3L12 2z"/></svg>
             <svg class="corner-sparkle cs-2" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 9.5 9 2 12l7.5 3L12 22l2.5-7L22 12l-7.5-3L12 2z"/></svg>
             <svg class="corner-sparkle cs-3" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 9.5 9 2 12l7.5 3L12 22l2.5-7L22 12l-7.5-3L12 2z"/></svg>
 
-            <!-- Cute name tag -->
             <div class="avatar-tag">
               <span class="avatar-tag-dot"></span>
               <span>Lux Cipher</span>
@@ -179,14 +176,13 @@
         </div>
       </div>
 
-      <!-- Scroll indicator -->
       <div class="scroll-hint" aria-hidden="true">
         <span>scroll</span>
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
       </div>
     </section>
 
-    <!-- ========== ABOUT ========== -->
+    <!-- ABOUT -->
     <section id="about" class="section reveal">
       <div class="section-container">
         <div class="section-header">
@@ -231,7 +227,7 @@
       </div>
     </section>
 
-    <!-- ========== IDENTITY / FEATURES ========== -->
+    <!-- IDENTITY -->
     <section id="identity" class="section reveal">
       <div class="section-container">
         <div class="section-header">
@@ -270,7 +266,7 @@
       </div>
     </section>
 
-    <!-- ========== TIMELINE ========== -->
+    <!-- TIMELINE -->
     <section id="timeline" class="section reveal">
       <div class="section-container">
         <div class="section-header">
@@ -323,7 +319,7 @@
       </div>
     </section>
 
-    <!-- ========== SKILLS ========== -->
+    <!-- SKILLS -->
     <section id="skills" class="section reveal">
       <div class="section-container">
         <div class="section-header">
@@ -334,54 +330,42 @@
         <div class="skills-grid">
           <div class="skill-block">
             <div class="skill-head">
-              <span class="skill-name">
-                <span class="skill-dot dot-pink"></span> Frontend Development
-              </span>
+              <span class="skill-name"><span class="skill-dot dot-pink"></span> Frontend Development</span>
               <span class="skill-pct" data-target="90">0%</span>
             </div>
             <div class="skill-bar"><div class="skill-fill fill-pink" data-width="90%"></div></div>
           </div>
           <div class="skill-block">
             <div class="skill-head">
-              <span class="skill-name">
-                <span class="skill-dot dot-purple"></span> React / Next.js
-              </span>
+              <span class="skill-name"><span class="skill-dot dot-purple"></span> React / Next.js</span>
               <span class="skill-pct" data-target="85">0%</span>
             </div>
             <div class="skill-bar"><div class="skill-fill fill-purple" data-width="85%"></div></div>
           </div>
           <div class="skill-block">
             <div class="skill-head">
-              <span class="skill-name">
-                <span class="skill-dot dot-mint"></span> HTML / CSS
-              </span>
+              <span class="skill-name"><span class="skill-dot dot-mint"></span> HTML / CSS</span>
               <span class="skill-pct" data-target="95">0%</span>
             </div>
             <div class="skill-bar"><div class="skill-fill fill-mint" data-width="95%"></div></div>
           </div>
           <div class="skill-block">
             <div class="skill-head">
-              <span class="skill-name">
-                <span class="skill-dot dot-blue"></span> Backend &amp; API
-              </span>
+              <span class="skill-name"><span class="skill-dot dot-blue"></span> Backend &amp; API</span>
               <span class="skill-pct" data-target="80">0%</span>
             </div>
             <div class="skill-bar"><div class="skill-fill fill-blue" data-width="80%"></div></div>
           </div>
           <div class="skill-block">
             <div class="skill-head">
-              <span class="skill-name">
-                <span class="skill-dot dot-cream"></span> Cybersecurity / CTF
-              </span>
+              <span class="skill-name"><span class="skill-dot dot-cream"></span> Cybersecurity / CTF</span>
               <span class="skill-pct" data-target="75">0%</span>
             </div>
             <div class="skill-bar"><div class="skill-fill fill-cream" data-width="75%"></div></div>
           </div>
           <div class="skill-block">
             <div class="skill-head">
-              <span class="skill-name">
-                <span class="skill-dot dot-pink"></span> Python &amp; Automation
-              </span>
+              <span class="skill-name"><span class="skill-dot dot-pink"></span> Python &amp; Automation</span>
               <span class="skill-pct" data-target="88">0%</span>
             </div>
             <div class="skill-bar"><div class="skill-fill fill-pink" data-width="88%"></div></div>
@@ -405,11 +389,201 @@
       </div>
     </section>
 
-    <!-- ========== TESTIMONIALS ========== -->
+    <!-- PROJECTS (replaced Pricing) -->
+    <section id="projects" class="section reveal">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-tag">05 — Projects</span>
+          <h2 class="section-title">Things I've <span class="text-gradient">built</span></h2>
+          <p class="section-sub">A collection of tools, AI experiments and utilities I've crafted from scratch.</p>
+        </div>
+
+        <div class="projects-grid">
+
+          <!-- DeniaGPT — Featured -->
+          <article class="project-card project-featured cursor-pointer">
+            <div class="project-glow"></div>
+            <div class="project-head">
+              <div class="project-icon icon-purple">
+                <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4c0 .55-.11 1.07-.31 1.55A4 4 0 0 1 20 12a4 4 0 0 1-2 3.46V17a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4v-1.54A4 4 0 0 1 4 12a4 4 0 0 1 4.31-4.45A4 4 0 0 1 12 2z"/><circle cx="9" cy="11" r="1" fill="currentColor"/><circle cx="15" cy="11" r="1" fill="currentColor"/></svg>
+              </div>
+              <div class="project-badges">
+                <span class="badge badge-featured">Featured</span>
+                <span class="badge badge-ai">AI</span>
+              </div>
+            </div>
+            <h3 class="project-title">DeniaGPT</h3>
+            <p class="project-desc">
+              A personal AI assistant inspired by Denia — built for conversational help,
+              code snippets, and daily automation. Trained with a focus on privacy and local-first processing.
+            </p>
+            <div class="project-tags">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">AI/ML</span>
+              <span class="tech-tag">API</span>
+            </div>
+            <div class="project-foot">
+              <span class="project-status status-live">
+                <span class="status-dot-live"></span> Active
+              </span>
+              <a href="https://github.com/TDz888" target="_blank" rel="noopener" class="project-link cursor-pointer" aria-label="View DeniaGPT">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- Auto Scale Tool -->
+          <article class="project-card cursor-pointer">
+            <div class="project-head">
+              <div class="project-icon icon-blue">
+                <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 6-8"/></svg>
+              </div>
+              <div class="project-badges">
+                <span class="badge badge-cpp">C++</span>
+              </div>
+            </div>
+            <h3 class="project-title">Auto Scale Tool</h3>
+            <p class="project-desc">
+              A lightweight C++ utility that auto-adjusts system scaling and resource
+              allocation in real time — perfect for performance-critical workloads.
+            </p>
+            <div class="project-tags">
+              <span class="tech-tag">C++</span>
+              <span class="tech-tag">System</span>
+            </div>
+            <div class="project-foot">
+              <span class="project-status status-live">
+                <span class="status-dot-live"></span> Active
+              </span>
+              <a href="https://github.com/TDz888" target="_blank" rel="noopener" class="project-link cursor-pointer" aria-label="View Auto Scale Tool">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- VPS Reg Clone Tool -->
+          <article class="project-card cursor-pointer">
+            <div class="project-head">
+              <div class="project-icon icon-pink">
+                <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="6" rx="2"/><rect x="3" y="14" width="18" height="6" rx="2"/><circle cx="7" cy="7" r="1" fill="currentColor"/><circle cx="7" cy="17" r="1" fill="currentColor"/></svg>
+              </div>
+              <div class="project-badges">
+                <span class="badge badge-cpp">C++</span>
+              </div>
+            </div>
+            <h3 class="project-title">VPS Reg Clone Tool</h3>
+            <p class="project-desc">
+              Automates VPS registration and environment cloning — spins up identical
+              server setups in seconds with a single command. Written in C++.
+            </p>
+            <div class="project-tags">
+              <span class="tech-tag">C++</span>
+              <span class="tech-tag">DevOps</span>
+            </div>
+            <div class="project-foot">
+              <span class="project-status status-live">
+                <span class="status-dot-live"></span> Active
+              </span>
+              <a href="https://github.com/TDz888" target="_blank" rel="noopener" class="project-link cursor-pointer" aria-label="View VPS Reg Clone Tool">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- Stress Tool -->
+          <article class="project-card cursor-pointer">
+            <div class="project-head">
+              <div class="project-icon icon-mint">
+                <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M5 19l3-3M16 8l3-3"/><circle cx="12" cy="12" r="4"/></svg>
+              </div>
+              <div class="project-badges">
+                <span class="badge badge-cpp">C++</span>
+              </div>
+            </div>
+            <h3 class="project-title">Stress Tool</h3>
+            <p class="project-desc">
+              High-performance C++ stress testing utility for benchmarking CPU, memory,
+              and network stability under heavy synthetic load.
+            </p>
+            <div class="project-tags">
+              <span class="tech-tag">C++</span>
+              <span class="tech-tag">Benchmark</span>
+            </div>
+            <div class="project-foot">
+              <span class="project-status status-live">
+                <span class="status-dot-live"></span> Active
+              </span>
+              <a href="https://github.com/TDz888" target="_blank" rel="noopener" class="project-link cursor-pointer" aria-label="View Stress Tool">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- Test Ping Tool -->
+          <article class="project-card cursor-pointer">
+            <div class="project-head">
+              <div class="project-icon icon-cream">
+                <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h3l3-8 4 16 3-8h7"/></svg>
+              </div>
+              <div class="project-badges">
+                <span class="badge badge-cpp">C++</span>
+              </div>
+            </div>
+            <h3 class="project-title">Test Ping Tool</h3>
+            <p class="project-desc">
+              A precise, low-latency C++ ping utility with live latency graphs, packet
+              loss tracking, and multi-target monitoring.
+            </p>
+            <div class="project-tags">
+              <span class="tech-tag">C++</span>
+              <span class="tech-tag">Network</span>
+            </div>
+            <div class="project-foot">
+              <span class="project-status status-live">
+                <span class="status-dot-live"></span> Active
+              </span>
+              <a href="https://github.com/TDz888" target="_blank" rel="noopener" class="project-link cursor-pointer" aria-label="View Test Ping Tool">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- Coming Soon Card (visual filler) -->
+          <article class="project-card project-coming cursor-pointer">
+            <div class="project-head">
+              <div class="project-icon icon-dashed">
+                <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+              </div>
+              <div class="project-badges">
+                <span class="badge badge-soon">Soon</span>
+              </div>
+            </div>
+            <h3 class="project-title">More Coming Soon</h3>
+            <p class="project-desc">
+              Always building. New tools, experiments and open-source projects are in the oven — stay tuned.
+            </p>
+            <div class="project-tags">
+              <span class="tech-tag">∞</span>
+            </div>
+            <div class="project-foot">
+              <span class="project-status status-soon">
+                <span class="status-dot-soon"></span> In Progress
+              </span>
+              <a href="https://github.com/TDz888" target="_blank" rel="noopener" class="project-link cursor-pointer" aria-label="View GitHub">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
     <section id="testimonials" class="section reveal">
       <div class="section-container">
         <div class="section-header">
-          <span class="section-tag">05 — Testimonials</span>
+          <span class="section-tag">06 — Testimonials</span>
           <h2 class="section-title">Kind words from <span class="text-gradient">kind people</span></h2>
         </div>
 
@@ -465,73 +639,7 @@
       </div>
     </section>
 
-    <!-- ========== PRICING ========== -->
-    <section id="pricing" class="section reveal">
-      <div class="section-container">
-        <div class="section-header">
-          <span class="section-tag">06 — Pricing</span>
-          <h2 class="section-title">Work with <span class="text-gradient">Lux Cipher</span></h2>
-          <p class="section-sub">Simple packages for teams &amp; individuals.</p>
-        </div>
-
-        <div class="pricing-grid">
-          <article class="price-card cursor-pointer">
-            <div class="price-head">
-              <span class="price-label">Starter</span>
-              <div class="price-amount"><span class="price-currency">$</span>199<span class="price-period">/project</span></div>
-              <p class="price-desc">Perfect for landing pages &amp; small sites.</p>
-            </div>
-            <ul class="price-list">
-              <li><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg> 1-page responsive site</li>
-              <li><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg> Mobile optimized</li>
-              <li><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg> 1 revision round</li>
-              <li><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg> 3-day delivery</li>
-            </ul>
-            <a href="#contact" class="btn btn-ghost price-btn cursor-pointer">Start</a>
-          </article>
-
-          <article class="price-card price-featured cursor-pointer">
-            <div class="price-ribbon">
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 2 9.5 9 2 12l7.5 3L12 22l2.5-7L22 12l-7.5-3L12 2z"/></svg>
-              Most Popular
-            </div>
-            <div class="price-head">
-              <span class="price-label">Pro</span>
-              <div class="price-amount"><span class="price-currency">$</span>599<span class="price-period">/project</span></div>
-              <p class="price-desc">Full-stack web apps with security best-practices.</p>
-            </div>
-            <ul class="price-list">
-              <li><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg> Full-stack web app</li>
-              <li><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg> Backend + Database</li>
-              <li><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg> Security audit</li>
-              <li><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg> 5 revision rounds</li>
-              <li><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg> Priority support</li>
-            </ul>
-            <a href="#contact" class="btn btn-primary price-btn cursor-pointer">
-              Get Started
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-          </article>
-
-          <article class="price-card cursor-pointer">
-            <div class="price-head">
-              <span class="price-label">Custom</span>
-              <div class="price-amount"><span class="price-currency">$</span>—<span class="price-period">/let's talk</span></div>
-              <p class="price-desc">Security consulting, mentoring, or long-term collab.</p>
-            </div>
-            <ul class="price-list">
-              <li><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg> Custom scope</li>
-              <li><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg> Security consulting</li>
-              <li><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg> Mentoring sessions</li>
-              <li><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg> Long-term collab</li>
-            </ul>
-            <a href="#contact" class="btn btn-ghost price-btn cursor-pointer">Let's talk</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== FINAL CTA ========== -->
+    <!-- FINAL CTA -->
     <section id="contact" class="section reveal">
       <div class="section-container">
         <div class="cta-card">
@@ -567,7 +675,7 @@
     </section>
   </main>
 
-  <!-- ========== FOOTER ========== -->
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-container">
       <div class="footer-top">
@@ -605,7 +713,7 @@
               <li><a href="#identity" class="cursor-pointer">Identity</a></li>
               <li><a href="#timeline" class="cursor-pointer">Journey</a></li>
               <li><a href="#skills" class="cursor-pointer">Skills</a></li>
-              <li><a href="#pricing" class="cursor-pointer">Pricing</a></li>
+              <li><a href="#projects" class="cursor-pointer">Projects</a></li>
             </ul>
           </div>
           <div class="footer-col">
@@ -635,7 +743,7 @@
     </div>
   </footer>
 
-  <!-- ========== BACK TO TOP ========== -->
+  <!-- Back to top -->
   <button id="backToTop" class="back-to-top cursor-pointer" aria-label="Back to top">
     <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
   </button>
