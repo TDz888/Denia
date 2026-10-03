@@ -16,7 +16,7 @@
 
   /* =========================================================
      KAWAII CLOCK
-     Uses requestAnimationFrame — only updates DOM when second changes
+     rAF-driven, updates only when second changes
      ========================================================= */
   const clockDigits = {
     h1: document.querySelector('[data-slot="h1"]'),
@@ -57,7 +57,7 @@
     const h = String(now.getHours()).padStart(2, '0');
     const m = String(now.getMinutes()).padStart(2, '0');
     const s = String(now.getSeconds()).padStart(2, '0');
-    const time = h + m + s; // e.g. "143207"
+    const time = h + m + s;
 
     for (let i = 0; i < 6; i++) {
       animateDigit(digitSlots[i], time[i]);
@@ -74,7 +74,6 @@
     requestAnimationFrame(clockLoop);
   }
 
-  // Start the clock immediately, then rAF loop
   updateClock();
   requestAnimationFrame(clockLoop);
 
@@ -96,21 +95,21 @@
 
   let themeAnimating = false;
 
-  // Sparkle shapes via clip-path (polygon only for max compat)
+  // Sparkle shapes (polygon clip-path for max browser compat)
   const sparkleShapes = [
-    'polygon(50% 0%, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0% 50%, 39% 39%)', // 4-point star
-    'polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)', // 5-point star
-    'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)', // diamond
-    'polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%)', // octagon
+    'polygon(50% 0%, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0% 50%, 39% 39%)',
+    'polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)',
+    'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)',
+    'polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%)',
   ];
 
   const sparkleColors = [
-    '#FFB6C1', // pastel pink
-    '#B3E5FC', // pastel blue
-    '#B9F6CA', // pastel mint
-    '#FFF9C4', // pastel cream
-    '#9D84B6', // pastel purple
-    '#FFFFFF', // white
+    '#FFB6C1',
+    '#B3E5FC',
+    '#B9F6CA',
+    '#FFF9C4',
+    '#9D84B6',
+    '#FFFFFF',
   ];
 
   function burstSparkles(cx, cy) {
@@ -118,7 +117,6 @@
     const count = isMobile ? 18 : 36;
     const baseAngle = Math.random() * Math.PI * 2;
 
-    // Create fragment to batch DOM insertion
     const fragment = document.createDocumentFragment();
     const elements = [];
 
@@ -148,7 +146,6 @@
       el.style.setProperty('--rot', rotation.toFixed(1) + 'deg');
       el.style.transitionDuration = duration + 'ms, ' + duration + 'ms';
       el.style.filter = 'drop-shadow(0 2px 4px rgba(0,0,0,0.12))';
-      el.dataset.removeAfter = String(duration + 100);
 
       fragment.appendChild(el);
       elements.push(el);
@@ -164,7 +161,6 @@
       }
     });
 
-    // Cleanup
     setTimeout(() => {
       for (let i = 0; i < elements.length; i++) {
         elements[i].remove();
@@ -173,7 +169,6 @@
   }
 
   function triggerWave(cx, cy, targetTheme) {
-    // Compute max radius needed to cover screen from (cx, cy)
     const maxDist = Math.max(
       Math.hypot(cx, cy),
       Math.hypot(window.innerWidth - cx, cy),
@@ -181,34 +176,30 @@
       Math.hypot(window.innerWidth - cx, window.innerHeight - cy)
     );
     const scale = (maxDist * 2) / 80 + 0.5;
-
     const waveColor = targetTheme === 'dark' ? '#2B1E3F' : '#FFD1DC';
 
-    // Reset without transition
+    // Set initial position without transition
     themeWave.style.transition = 'none';
     themeWave.style.background = waveColor;
     themeWave.style.opacity = '1';
     themeWave.style.transform = `translate3d(${cx - 40}px, ${cy - 40}px, 0) scale(0)`;
 
-    // Force reflow
-    void themeWave.offsetWidth;
+    // Force style flush
+    themeWave.getBoundingClientRect();
 
-    // Start expansion
+    // Begin expansion
     themeWave.style.transition = 'transform 600ms cubic-bezier(0.22, 1, 0.36, 1)';
-    requestAnimationFrame(() => {
-      themeWave.style.transform = `translate3d(${cx - 40}px, ${cy - 40}px, 0) scale(${scale})`;
-    });
+    themeWave.style.transform = `translate3d(${cx - 40}px, ${cy - 40}px, 0) scale(${scale})`;
 
-    // After wave covers screen → switch theme + start fade
+    // Switch theme mid-wave
     setTimeout(() => {
       setTheme(targetTheme);
       localStorage.setItem('lux-theme', targetTheme);
-
       themeWave.style.transition = 'opacity 300ms ease-out';
       themeWave.style.opacity = '0';
     }, 620);
 
-    // Reset wave after fully faded
+    // Reset
     setTimeout(() => {
       themeWave.style.transition = 'none';
       themeWave.style.opacity = '0';
@@ -219,7 +210,6 @@
   themeToggle?.addEventListener('click', () => {
     if (themeAnimating) return;
     if (prefersReducedMotion) {
-      // Skip animation if user prefers reduced motion
       const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       setTheme(next);
       localStorage.setItem('lux-theme', next);
