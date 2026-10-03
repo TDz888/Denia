@@ -1,6 +1,6 @@
 /* =========================================================
    Kawaii Pastel Pop — Lux Cipher
-   Interactions · Theme switch · Animations
+   Interactions · Sparkle Wave Theme Switch · Animations
    ========================================================= */
 
 (function () {
@@ -12,44 +12,114 @@
     if (loader) setTimeout(() => loader.classList.add('hidden'), 350);
   });
 
-  /* ---------- THEME TOGGLE (with wave animation) ---------- */
+  /* =========================================================
+     THEME TOGGLE — Option A: Kawaii Sparkle Wave
+     ========================================================= */
   const root = document.documentElement;
   const themeToggle = document.getElementById('themeToggle');
   const themeWave = document.getElementById('themeWave');
+  const sparkleLayer = document.getElementById('sparkleLayer');
+
   const savedTheme = localStorage.getItem('lux-theme');
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
   const setTheme = (theme) => root.setAttribute('data-theme', theme);
 
-  if (savedTheme) {
-    setTheme(savedTheme);
-  } else {
-    setTheme(prefersDark ? 'dark' : 'light');
+  if (savedTheme) setTheme(savedTheme);
+  else setTheme(prefersDark ? 'dark' : 'light');
+
+  // Sparkle shapes via clip-path
+  const clipPaths = {
+    star4:   'polygon(50% 0%, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0% 50%, 39% 39%)',
+    star5:   'polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)',
+    heart:   'path("M12 21s-7-4.5-9.5-9C.5 8 3 4 6.5 4 8.7 4 10.3 5.3 12 7c1.7-1.7 3.3-3 5.5-3C21 4 23.5 8 21.5 12 19 16.5 12 21 12 21z")',
+    circle:  'circle(50% at 50% 50%)',
+    diamond: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)',
+  };
+
+  // Note: clip-path with 'path()' or 'circle()' needs CSS shape-outside syntax;
+  // for div clip-path we use polygon approximations:
+  const shapes = {
+    star4:   clipPaths.star4,
+    star5:   clipPaths.star5,
+    circle:  'circle(50% at 50% 50%)',
+    diamond: clipPaths.diamond,
+    square:  'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%, 25% 25%, 75% 25%, 75% 75%, 25% 75%)', // starburst approx
+  };
+  const shapeKeys = Object.keys(shapes);
+
+  const sparkleColors = [
+    '#FFB6C1', // pink
+    '#B3E5FC', // blue
+    '#B9F6CA', // mint
+    '#FFF9C4', // cream
+    '#9D84B6', // purple
+    '#FFFFFF', // white
+  ];
+
+  function burstSparkles(cx, cy) {
+    const count = 42;
+    const baseAngle = Math.random() * Math.PI * 2;
+
+    for (let i = 0; i < count; i++) {
+      const shapeKey = shapeKeys[Math.floor(Math.random() * shapeKeys.length)];
+      const color = sparkleColors[Math.floor(Math.random() * sparkleColors.length)];
+      const angle = baseAngle + (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.5;
+      const distance = 100 + Math.random() * 240;
+      const size = 8 + Math.random() * 16;
+      const rotation = Math.random() * 540 - 270;
+      const duration = 700 + Math.random() * 500;
+
+      const el = document.createElement('div');
+      el.className = 'theme-sparkle';
+      el.style.left = cx + 'px';
+      el.style.top = cy + 'px';
+      el.style.width = size + 'px';
+      el.style.height = size + 'px';
+      el.style.background = color;
+      el.style.clipPath = shapes[shapeKey];
+      el.style.setProperty('--tx', (Math.cos(angle) * distance).toFixed(1) + 'px');
+      el.style.setProperty('--ty', (Math.sin(angle) * distance).toFixed(1) + 'px');
+      el.style.setProperty('--rot', rotation.toFixed(1) + 'deg');
+      el.style.transitionDuration = duration + 'ms, ' + duration + 'ms';
+      el.style.filter = 'drop-shadow(0 2px 4px rgba(0,0,0,0.12))';
+
+      sparkleLayer.appendChild(el);
+      // Force reflow before adding burst class
+      void el.offsetWidth;
+      requestAnimationFrame(() => el.classList.add('burst'));
+
+      setTimeout(() => el.remove(), duration + 100);
+    }
   }
 
-  themeToggle?.addEventListener('click', (e) => {
+  themeToggle?.addEventListener('click', () => {
     const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
     const rect = themeToggle.getBoundingClientRect();
     const cx = rect.left + rect.width / 2;
     const cy = rect.top + rect.height / 2;
 
-    // Set wave color to the theme we're switching TO
+    // 1. Prepare wave
     const waveColor = next === 'dark' ? '#2B1E3F' : '#FFD1DC';
     themeWave.style.left = cx + 'px';
     themeWave.style.top = cy + 'px';
-    themeWave.style.width = '40px';
-    themeWave.style.height = '40px';
+    themeWave.style.width = '60px';
+    themeWave.style.height = '60px';
     themeWave.style.background = waveColor;
     themeWave.classList.add('animating');
 
+    // 2. Burst sparkles immediately
+    burstSparkles(cx, cy);
+
+    // 3. Switch theme mid-animation
     setTimeout(() => {
       setTheme(next);
       localStorage.setItem('lux-theme', next);
-    }, 240);
+    }, 260);
 
+    // 4. Reset wave
     setTimeout(() => {
       themeWave.classList.remove('animating');
-    }, 780);
+    }, 850);
   });
 
   /* ---------- SCROLL PROGRESS ---------- */
@@ -87,17 +157,15 @@
   window.addEventListener('scroll', updateActiveLink, { passive: true });
   updateActiveLink();
 
-  /* ---------- HAMBURGER MENU ---------- */
+  /* ---------- HAMBURGER ---------- */
   const hamburger = document.getElementById('hamburger');
   const navLinksList = document.getElementById('navLinks');
-  hamburger?.addEventListener('click', () => {
-    navLinksList?.classList.toggle('open');
-  });
+  hamburger?.addEventListener('click', () => navLinksList?.classList.toggle('open'));
   navLinksList?.querySelectorAll('a').forEach((a) => {
     a.addEventListener('click', () => navLinksList.classList.remove('open'));
   });
 
-  /* ---------- REVEAL ON SCROLL ---------- */
+  /* ---------- REVEAL ---------- */
   const revealEls = document.querySelectorAll('.reveal');
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -120,10 +188,7 @@
       const step = Math.max(1, Math.floor(target / 35));
       const tick = () => {
         current += step;
-        if (current >= target) {
-          el.textContent = target + '+';
-          return;
-        }
+        if (current >= target) { el.textContent = target + '+'; return; }
         el.textContent = current + '+';
         requestAnimationFrame(tick);
       };
@@ -142,9 +207,7 @@
       const fill = block.querySelector('.skill-fill');
       const pct = block.querySelector('.skill-pct');
       const targetPct = parseInt(pct?.dataset.target || '0', 10);
-
       if (fill) fill.style.width = fill.dataset.width || '0%';
-
       let cur = 0;
       const step = Math.max(1, Math.floor(targetPct / 45));
       const tick = () => {
@@ -172,23 +235,10 @@
     '  → ready to deploy ✓',
   ];
 
-  if (terminalEl) {
-    const termObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          typeLines();
-          termObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.35 });
-    termObserver.observe(terminalEl);
-  }
-
   function typeLines() {
     let lineIdx = 0;
     let charIdx = 0;
     let output = '';
-
     function typeChar() {
       if (lineIdx >= terminalLines.length) return;
       const line = terminalLines[lineIdx];
@@ -206,6 +256,18 @@
       }
     }
     typeChar();
+  }
+
+  if (terminalEl) {
+    const termObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          typeLines();
+          termObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.35 });
+    termObserver.observe(terminalEl);
   }
 
   /* ---------- BACK TO TOP ---------- */
@@ -233,16 +295,14 @@
   }
 
   /* ---------- MAGNETIC BUTTONS ---------- */
-  const magneticEls = document.querySelectorAll('.btn-primary, .social-btn, .theme-toggle');
+  const magneticEls = document.querySelectorAll('.btn-primary, .social-btn');
   if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
     magneticEls.forEach((el) => {
       el.addEventListener('mousemove', (e) => {
         const rect = el.getBoundingClientRect();
         const x = e.clientX - rect.left - rect.width / 2;
         const y = e.clientY - rect.top - rect.height / 2;
-        if (!el.classList.contains('theme-toggle')) {
-          el.style.transform = `translate(${x * 0.12}px, ${y * 0.12}px) translateY(-2px)`;
-        }
+        el.style.transform = `translate(${x * 0.12}px, ${y * 0.12}px) translateY(-2px)`;
       });
       el.addEventListener('mouseleave', () => {
         el.style.transform = '';
@@ -251,16 +311,16 @@
   }
 
   /* ---------- SPARKLE TRAIL ON CLICK ---------- */
-  const sparkleColors = ['#FFB6C1', '#B3E5FC', '#B9F6CA', '#FFF9C4', '#9D84B6'];
+  const trailColors = ['#FFB6C1', '#B3E5FC', '#B9F6CA', '#FFF9C4', '#9D84B6'];
   document.addEventListener('click', (e) => {
     const target = e.target;
     if (!(target instanceof HTMLElement)) return;
-    if (!target.closest('a, button, .feature-card, .stat-card, .testi-card, .price-card')) return;
+    if (!target.closest('a, button, .feature-card, .stat-card, .testi-card, .project-card')) return;
 
     for (let i = 0; i < 6; i++) {
       const s = document.createElement('div');
       const size = 6 + Math.random() * 8;
-      const color = sparkleColors[Math.floor(Math.random() * sparkleColors.length)];
+      const color = trailColors[Math.floor(Math.random() * trailColors.length)];
       const angle = (Math.PI * 2 * i) / 6 + Math.random() * 0.5;
       const dist = 30 + Math.random() * 30;
 
@@ -286,7 +346,7 @@
     }
   });
 
-  /* ---------- SMOOTH SCROLL (offset for fixed nav) ---------- */
+  /* ---------- SMOOTH SCROLL ---------- */
   document.querySelectorAll('a[href^="#"]').forEach((a) => {
     a.addEventListener('click', (e) => {
       const id = a.getAttribute('href');
