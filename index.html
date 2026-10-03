@@ -31,11 +31,9 @@
 </head>
 <body>
 
-  <!-- Theme transition overlay -->
   <div id="themeWave" class="theme-wave" aria-hidden="true"></div>
   <div id="sparkleLayer" class="sparkle-layer" aria-hidden="true"></div>
 
-  <!-- Background decorations -->
   <div class="bg-decor" aria-hidden="true">
     <div class="cloud cloud-1"></div>
     <div class="cloud cloud-2"></div>
@@ -48,7 +46,6 @@
     <div class="rainbow-blob blob-2"></div>
   </div>
 
-  <!-- Skeleton loader -->
   <div id="skeletonLoader" class="skeleton-loader" aria-hidden="true">
     <div class="skeleton-inner">
       <div class="skeleton-heart">
@@ -59,58 +56,65 @@
     </div>
   </div>
 
-  <!-- Scroll progress -->
   <div id="scrollProgress" class="scroll-progress" aria-hidden="true"></div>
 
-  <!-- Navbar -->
+  <!-- ================= NAVBAR ================= -->
   <header class="navbar" id="navbar">
     <nav class="nav-container" aria-label="Main navigation">
-      <a href="#hero" class="nav-logo cursor-pointer" aria-label="Lux Cipher Home">
-        <span class="logo-mark">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2 9.5 9 2 12l7.5 3L12 22l2.5-7L22 12l-7.5-3L12 2z"/></svg>
-        </span>
-        <span class="logo-text">Lux<span class="logo-accent">Cipher</span></span>
-      </a>
 
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#about" class="nav-link cursor-pointer">About</a></li>
-        <li><a href="#skills" class="nav-link cursor-pointer">Skills</a></li>
-        <li><a href="#projects" class="nav-link cursor-pointer">Projects</a></li>
-        <li><a href="#contact" class="nav-link cursor-pointer">Contact</a></li>
-      </ul>
+      <!-- LEFT: Logo + Nav links -->
+      <div class="nav-left">
+        <a href="#hero" class="nav-logo cursor-pointer" aria-label="Lux Cipher Home">
+          <span class="logo-mark">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2 9.5 9 2 12l7.5 3L12 22l2.5-7L22 12l-7.5-3L12 2z"/></svg>
+          </span>
+          <span class="logo-text">Lux<span class="logo-accent">Cipher</span></span>
+        </a>
 
-      <!-- ⏰ Kawaii Clock -->
-      <div class="nav-clock" id="navClock" role="timer" aria-label="Current time">
-        <span class="clock-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="9"/>
-            <path d="M12 7v5l3 2"/>
-          </svg>
-        </span>
-        <div class="clock-digits">
-          <span class="digit-box"><span class="digit-content" data-slot="h1">0</span></span>
-          <span class="digit-box"><span class="digit-content" data-slot="h2">0</span></span>
-          <span class="clock-colon" aria-hidden="true">:</span>
-          <span class="digit-box"><span class="digit-content" data-slot="m1">0</span></span>
-          <span class="digit-box"><span class="digit-content" data-slot="m2">0</span></span>
-          <span class="clock-colon" aria-hidden="true">:</span>
-          <span class="digit-box"><span class="digit-content" data-slot="s1">0</span></span>
-          <span class="digit-box"><span class="digit-content" data-slot="s2">0</span></span>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#about" class="nav-link cursor-pointer">About</a></li>
+          <li><a href="#skills" class="nav-link cursor-pointer">Skills</a></li>
+          <li><a href="#projects" class="nav-link cursor-pointer">Projects</a></li>
+          <li><a href="#contact" class="nav-link cursor-pointer">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- CENTER: Kawaii Clock -->
+      <div class="nav-center">
+        <div class="nav-clock" id="navClock" role="timer" aria-label="Current time">
+          <span class="clock-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9"/>
+              <path d="M12 7v5l3 2"/>
+            </svg>
+          </span>
+          <div class="clock-digits">
+            <span class="digit-box"><span class="digit-content" data-slot="h1">0</span></span>
+            <span class="digit-box"><span class="digit-content" data-slot="h2">0</span></span>
+            <span class="clock-colon" aria-hidden="true">:</span>
+            <span class="digit-box"><span class="digit-content" data-slot="m1">0</span></span>
+            <span class="digit-box"><span class="digit-content" data-slot="m2">0</span></span>
+            <span class="clock-colon" aria-hidden="true">:</span>
+            <span class="digit-box"><span class="digit-content" data-slot="s1">0</span></span>
+            <span class="digit-box"><span class="digit-content" data-slot="s2">0</span></span>
+          </div>
         </div>
       </div>
 
-      <div class="nav-actions">
+      <!-- RIGHT: Theme toggle + Hamburger -->
+      <div class="nav-right">
         <button id="themeToggle" class="theme-toggle cursor-pointer" aria-label="Toggle theme">
           <span class="theme-toggle-thumb">
             <svg class="icon-sun" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
             <svg class="icon-moon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
           </span>
         </button>
-        <a href="#contact" class="btn btn-primary nav-cta cursor-pointer">Hi!</a>
+
         <button id="hamburger" class="hamburger cursor-pointer" aria-label="Open menu">
           <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
         </button>
       </div>
+
     </nav>
   </header>
 
@@ -418,7 +422,6 @@
 
         <div class="projects-grid">
 
-          <!-- DeniaGPT — Featured -->
           <article class="project-card project-featured cursor-pointer">
             <div class="project-glow"></div>
             <div class="project-head">
@@ -450,7 +453,6 @@
             </div>
           </article>
 
-          <!-- Auto Scale Tool -->
           <article class="project-card cursor-pointer">
             <div class="project-head">
               <div class="project-icon icon-blue">
@@ -479,7 +481,6 @@
             </div>
           </article>
 
-          <!-- VPS Reg Clone Tool -->
           <article class="project-card cursor-pointer">
             <div class="project-head">
               <div class="project-icon icon-pink">
@@ -508,7 +509,6 @@
             </div>
           </article>
 
-          <!-- Stress Tool -->
           <article class="project-card cursor-pointer">
             <div class="project-head">
               <div class="project-icon icon-mint">
@@ -537,7 +537,6 @@
             </div>
           </article>
 
-          <!-- Test Ping Tool -->
           <article class="project-card cursor-pointer">
             <div class="project-head">
               <div class="project-icon icon-cream">
@@ -566,7 +565,6 @@
             </div>
           </article>
 
-          <!-- Coming Soon -->
           <article class="project-card project-coming cursor-pointer">
             <div class="project-head">
               <div class="project-icon icon-dashed">
@@ -679,7 +677,7 @@
           </p>
 
           <div class="cta-actions">
-            <a href="mailto:contact@luxcipher.dev" class="btn btn-primary cursor-pointer">
+            <a href="mailto:thienantran1268@gmail.com" class="btn btn-primary cursor-pointer">
               Send Email
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
@@ -746,7 +744,7 @@
           <div class="footer-col">
             <h4>Contact</h4>
             <ul>
-              <li><a href="mailto:contact@luxcipher.dev" class="cursor-pointer">contact@luxcipher.dev</a></li>
+              <li><a href="mailto:thienantran1268@gmail.com" class="cursor-pointer">thienantran1268@gmail.com</a></li>
               <li><a href="https://github.com/TDz888/Denia" target="_blank" rel="noopener" class="cursor-pointer">GitHub Repo</a></li>
               <li><span>Vietnam · Remote</span></li>
             </ul>
@@ -761,7 +759,6 @@
     </div>
   </footer>
 
-  <!-- Back to top -->
   <button id="backToTop" class="back-to-top cursor-pointer" aria-label="Back to top">
     <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
   </button>
